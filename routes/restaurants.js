@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const verifyToken = require("../middleware/auth"); // Importamos el middleware
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -44,8 +45,8 @@ const getRestaurantById = (request, response) => {
 
 
 //rutas
-app.route("/restaurants/:id").get(getRestaurantById);
-app.route("/restaurants").post(postRestaurants);
-app.route("/restaurants").get(getRestaurants);
+app.route("/restaurants/:id").get(verifyToken, getRestaurantById);
+app.route("/restaurants").post(verifyToken, postRestaurants);
+app.route("/restaurants").get(verifyToken, getRestaurants);
 
 module.exports = app;

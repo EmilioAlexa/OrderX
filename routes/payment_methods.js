@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+const verifyToken = require("../middleware/auth"); // Importamos el middleware
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -28,7 +28,7 @@ const postPaymentMethods = (request, response) => {
 };
 
 //rutas
-app.route("/payment").get(getPayment);
-app.route("/payment_methods").post(postPaymentMethods);
+app.route("/payment").get(verifyToken, getPayment);
+app.route("/payment_methods").post(verifyToken, postPaymentMethods);
 
 module.exports = app;

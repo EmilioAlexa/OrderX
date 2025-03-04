@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+const verifyToken = require("../middleware/auth"); // Importamos el middleware
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -28,7 +28,7 @@ const postInventories = (request, response) => {
 };
 
 //rutas
-app.route("/inventories").post(postInventories);
-app.route("/inventories").get(getInventories);
+app.route("/inventories").post(verifyToken, postInventories);
+app.route("/inventories").get(verifyToken, getInventories);
 
 module.exports = app;

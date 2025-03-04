@@ -1,11 +1,10 @@
 const express = require("express");
 const app = express();
-
 const dotenv = require("dotenv");
-dotenv.config();
+const { connection } = require("../config/config.db");
+const verifyToken = require("../middleware/auth"); // Importamos el middleware
 
-//conexión con la base de datos
-const {connection} = require("../config/config.db");
+dotenv.config();
 
 const getProducts = (request, response) => {
     connection.query("SELECT * FROM products",
@@ -27,8 +26,18 @@ const postProducts = (request, response) => {
         });
 };
 
-//rutas
-app.route("/products").get(getProducts);
-app.route("/products").post(postProducts);
+const getProductsByCategory = (request, response) => {
+    const { category } = request.params;
+    connection.query("SELECT * FROM products WHERE category = ?", [category], 
+    (error, results) => {
+        if (error) throw error;
+        response.status(200).json(results);
+    });
+};
+
+// Protegemos las rutas con `verifyToken`
+app.route("/products/category/:category").get(verifyToken, getProductsByCategory);
+app.route("/products").get(verifyToken, getProducts);
+app.route("/products").post(verifyToken, postProducts);
 
 module.exports = app;
