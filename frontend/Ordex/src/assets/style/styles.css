@@ -1,0 +1,566 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #111315;
+    color: #FBFBFB;
+}
+
+.container {
+    width: 1920px;
+    height: 1388px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 234.67px;
+    height: 1388px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #292C2D;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+/* Dashboard text */
+.dashboard-text {
+    width: 146.35px;
+    left: 334.82px;
+    top: 43px;
+    position: absolute;
+    font-size: 25px;
+    font-weight: 500;
+    color: #FBFBFB;
+}
+
+/* Íconos */
+.icon-1 {
+    width: 35.66px;
+    height: 35.66px;
+    left: 283.68px;
+    top: 44px;
+    position: absolute;
+    background: #292C2D;
+    border-radius: 9999px;
+    cursor: pointer;
+}
+.icon-1:hover {
+
+    background: #565c5e;
+
+}
+
+.icon-2 {
+    width: 17.83px;
+    height: 17.83px;
+    left: 274.76px;
+    top: 52.92px;
+    position: absolute;
+    transform: rotate(90deg);
+    overflow: hidden;
+}
+
+.icon-2-inner {
+    width: 8.92px;
+    height: 4.46px;
+    left: 11.14px;
+    top: 4.46px;
+    position: absolute;
+    transform: rotate(90deg);
+    outline: 1.11px #FBFBFB solid;
+    outline-offset: -0.56px;
+}
+
+.icon-3 {
+    width: 19.59px;
+    height: 17.78px;
+    left: 1726.58px;
+    top: 51.96px;
+    position: absolute;
+    
+}
+
+.icon-4 {
+    width: 13.87px;
+    height: 11.85px;
+    left: 1734.50px;
+    top: 47px;
+    position: absolute;
+    background: #C2A67D;
+    border-radius: 9999px;
+}
+
+/* Imagen de perfil */
+.profile-image {
+    width: 37.15px;
+    height: 37.15px;
+    left: 1792.85px;
+    top: 40.86px;
+    position: absolute;
+    background: #D9D9D9;
+    border-radius: 9999px;
+    border: 1.49px #C2A67D solid;
+}
+
+/* Tarjetas */
+.card {
+    width: 504px;
+    height: 166px;
+    position: absolute;
+    background: #292C2D;
+    border-radius: 10px;
+}
+
+.card-1 {
+    left: 288px;
+    top: 125px;
+}
+
+.card-2 {
+    left: 826px;
+    top: 125px;
+}
+
+.card-3 {
+    left: 1364px;
+    top: 125px;
+}
+
+.card-title {
+    left: 15.98px;
+    top: 18.57px;
+    position: absolute;
+    font-size: 16px;
+    font-weight: 300;
+    color: #FBFBFB;
+}
+
+.card-date {
+    left: 15.98px;
+    top: 132.39px;
+    position: absolute;
+    font-size: 16px;
+    font-weight: 300;
+    color: #777979;
+}
+
+.card-chart {
+    width: 154px;
+    height: 52px;
+    left: 334.98px;
+    top: 114.39px;
+    position: absolute;
+    overflow: hidden;
+}
+
+.bar {
+    width: 6.34px;
+    height: 62.66px;
+    position: absolute;
+    background: #50CD89;
+    border-radius: 2.97px;
+}
+
+.bar-1 { left: 0; top: 22.38px; }
+.bar-2 { left: 21.14px; top: 0; }
+.bar-3 { left: 42.27px; top: 5.60px; }
+.bar-4 { left: 63.41px; top: 16.79px; }
+.bar-5 { left: 84.55px; top: 27.97px; }
+.bar-6 { left: 105.69px; top: 11.19px; }
+.bar-7 { left: 126.82px; top: 2.24px; }
+.bar-8 { left: 147.87px; top: 0; }
+
+.card-icon {
+    width: 35.66px;
+    height: 35.66px;
+    position: absolute;
+    
+    background: #C2A67D;
+    border-radius: 9999px;
+}
+
+.card-value {
+    left: 15.98px;
+    top: 49.57px;
+    position: absolute;
+    font-size: 25px;
+    font-weight: 500;
+    color: #FBFBFB;
+}
+
+/* Sección Overview */
+.overview {
+    width: 1580px;
+    height: 514px;
+    left: 288px;
+    top: 823px;
+    position: absolute;
+    background: #292C2D;
+    border-radius: 10.07px;
+}
+
+.overview-title {
+    left: 30.18px;
+    top: 32.68px;
+    position: absolute;
+    font-size: 25px;
+    font-weight: 500;
+    color: #FBFBFB;
+}
+
+.export-button {
+    padding: 14.09px 22.14px;
+    left: 1419.92px;
+    top: 25.68px;
+    position: absolute;
+    border-radius: 7.48px;
+    outline: 0.75px #B78628 solid;
+    display: inline-flex;
+    align-items: center;
+    gap: 7.48px;
+}
+
+.export-icon {
+    width: 18.12px;
+    height: 18.12px;
+    background: #B78628;
+}
+
+.export-text {
+    color: #B78628;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.time-selector {
+    left: 1113px;
+    top: 20px;
+    position: absolute;
+    display: inline-flex;
+    gap: 25.16px;
+    align-items: center;
+}
+
+.time-option {
+    color: #FBFBFB;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.time-option.monthly {
+    padding: 14.09px 22.14px;
+    background: #B78628;
+    border-radius: 7.48px;
+    color: #333333;
+    font-weight: 500;
+}
+
+.months {
+    display: flex;
+    gap: 95px;
+    position: absolute;
+    top: 439.63px;
+    left: 32.88px;
+}
+
+.month {
+    color: #FBFBFB;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.y-axis {
+    position: absolute;
+    right: 30px;
+    top: 128.89px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.y-value {
+    color: #FBFBFB;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: right;
+}
+
+.grid-lines {
+    position: absolute;
+    top: 142px;
+    left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.line {
+    width: 1465px;
+    height: 0;
+    outline: 1.45px #444444 solid;
+}
+
+.legend {
+    position: absolute;
+    top: 90.98px;
+    left: 30.18px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.legend-item {
+    width: 28.18px;
+    height: 10.07px;
+    border-radius: 100.66px;
+}
+
+.legend-item.sales {
+    background: #B78628;
+}
+
+.legend-item.revenue {
+    background: #D9D9D9;
+}
+
+.legend-text {
+    color: #FBFBFB;
+    font-size: 16.11px;
+    font-weight: 300;
+}
+
+.chart-area {
+    width: 1462px;
+    height: 87px;
+    left: 33px;
+    top: 227px;
+    position: absolute;
+    outline: 2.01px #D9D9D9 solid;
+}
+
+.chart-highlight {
+    width: 1465px;
+    height: 268px;
+    left: 30px;
+    top: 142px;
+    position: absolute;
+    opacity: 0.33;
+    background: linear-gradient(180deg, #FAC1D9 0%, #FAC1D9 47%, #FAC1D9 100%);
+    mix-blend-mode: multiply;
+}
+
+.chart-marker {
+    width: 29.15px;
+    height: 21.68px;
+    left: 1015.20px;
+    top: 172.87px;
+    position: absolute;
+    background: #B78628;
+    border-radius: 9999px;
+    border: 2.89px #FBFBFB solid;
+    box-shadow: 0px 11.56px 11.56px rgba(13, 10, 44, 0.08);
+}
+
+/* Sección Popular Dishes */
+.popular-dishes {
+    width: 768px;
+    height: 466px;
+    left: 288px;
+    top: 318px;
+    position: absolute;
+    background: #292C2D;
+    border-radius: 10px;
+}
+
+.dishes-title {
+    left: 29.72px;
+    top: 25px;
+    position: absolute;
+    font-size: 25px;
+    font-weight: 500;
+    color: #FBFBFB;
+}
+
+.see-all {
+    left: 674.53px;
+    top: 32px;
+    position: absolute;
+    color: #C2A67D;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: underline;
+}
+
+.scroll-bar {
+    width: 14px;
+    height: 466px;
+    left: 754px;
+    top: 0;
+    position: absolute;
+    background: #3D4142;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.scroll-thumb {
+    width: 9.66px;
+    height: 106.98px;
+    left: 756px;
+    top: 12.80px;
+    position: absolute;
+    background: #292C2D;
+    border-radius: 37.15px;
+}
+
+.dish {
+    width: 708px;
+    height: 77px;
+    position: absolute;
+    background: #3D4142;
+    border-radius: 7.43px;
+}
+
+.dish img {
+    width: 89.15px;
+    height: 66.86px;
+    left: 5px;
+    top: 5px;
+    position: absolute;
+    border-radius: 5.20px;
+}
+
+.dish-name {
+    left: 108.93px;
+    top: 14px;
+    position: absolute;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FBFBFB;
+}
+
+.dish-details {
+    left: 108.93px;
+    top: 42px;
+    position: absolute;
+    font-size: 14px;
+    font-weight: 400;
+    color: #777979;
+}
+
+.dish-price {
+    left: 646px;
+    top: 44px;
+    position: absolute;
+    font-size: 14px;
+    font-weight: 400;
+    color: #FBFBFB;
+    text-align: right;
+}
+
+.dish-status {
+    left: 631px;
+    top: 12px;
+    position: absolute;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: right;
+}
+
+.dish-status.in-stock {
+    color: #C2A67D;
+}
+
+.dish-status.out-of-stock {
+    color: #F60000;
+}
+
+/* Logout */
+.logout {
+    width: 55px;
+    height: 24px;
+    left: 90px;
+    top: 1313px;
+    position: absolute;
+    text-align: center;
+    color: #FBFBFB;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.logout-icon {
+    width: 24px;
+    height: 24px;
+    left: 105px;
+    top: 1284px;
+    position: absolute;
+    overflow: hidden;
+}
+
+.logout-icon div {
+    width: 20.58px;
+    height: 20.16px;
+    left: 1.92px;
+    top: 1.92px;
+    position: absolute;
+    background: #C2A67D;
+}
+
+/* Logo */
+.logo {
+    width: 80px;
+    height: 32px;
+    left: 77px;
+    top: 36px;
+    position: absolute;
+    text-align: center;
+    color: #C2A67D;
+    font-size: 20.06px;
+    font-weight: 600;
+}
+
+/* Menú lateral */
+.menu {
+    width: 120px;
+    height: 604.04px;
+    left: 57px;
+    top: 109.24px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.menu-item {
+    width: 120px;
+    height: 84px;
+    background: #292C2D;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background: #3e4344;
+}
+
+.menu-icon {
+    width: 30.48px;
+    height: 29.75px;
+    background: #FBFBFB;
+    border-radius: 9999px;
+}
+
+.menu-text {
+    color: #FBFBFB;
+    font-size: 16px;
+    font-weight: 400;
+}
