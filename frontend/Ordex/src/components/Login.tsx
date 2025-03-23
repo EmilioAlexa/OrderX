@@ -8,7 +8,7 @@ const Login: React.FC = () => {
 
     return (
         <div className="body-container">
-            <div className="login-container">
+            <div className="login-container" style={{ marginLeft: '600px'}}>
                 <div className="login-box">
                     <h1>Login!</h1>
                     <p>Please enter your credentials below to continue</p>
@@ -51,8 +51,8 @@ const Login: React.FC = () => {
                         <button type="submit" className="login-button">Login</button>
                 </div>
             </div>
-            <footer>
-                <p>© 2025 OrderX. All Rights Reserved</p>
+            <footer style={{ marginLeft: '600px'}}>
+                <p >© 2025 OrderX. All Rights Reserved</p>
             </footer>
         </div>
         

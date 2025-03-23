@@ -1,4 +1,4 @@
-import React from 'react';
+
 import '../assets/style/dashboard.css'; // Asegúrate de que el CSS esté correctamente ubicado
 
 // Importación de imágenes si están en src/assets/
@@ -45,7 +45,7 @@ const Dashboard = () => {
         <div className="card-date">9 February 2024</div>
         <div className="card-chart">
           {[...Array(8)].map((_, i) => (
-            <div key={i} className={'bar bar-${i + 1}'}></div>
+            <div key={i} className={`bar bar-${i + 1}`}></div>
           ))}
         </div>
         <div className="card-icon" style={{ marginLeft: '450px', marginTop: '15px' }}>
@@ -61,7 +61,7 @@ const Dashboard = () => {
         <div className="card-date">1 Jan - 1 Feb</div>
         <div className="card-chart">
           {[...Array(8)].map((_, i) => (
-            <div key={i} className={'bar bar-${i + 1}'}></div>
+            <div key={i} className={`bar bar-${i + 1}`}></div>
           ))}
         </div>
         <div className="card-icon" style={{ marginLeft: '450px', marginTop: '15px' }}>
@@ -76,7 +76,7 @@ const Dashboard = () => {
         <div className="card-title">Table Occupancy</div>
         <div className="card-chart">
           {[...Array(8)].map((_, i) => (
-            <div key={i} className={'bar bar-${i + 1}'}></div>
+            <div key={i} className={`bar bar-${i + 1}`}></div>
           ))}
         </div>
         <div className="card-value">25 Tables</div>
