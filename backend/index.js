@@ -5,6 +5,14 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const cors = require("cors");
+
+app.use(cors({ 
+    origin: "http://localhost:4000", // Permite solo tu frontend
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type,Authorization"
+}));
+
 // Cargar rutas
 app.use(require("./routes/auth"));  // Ruta de autenticación
 app.use(require("./routes/restaurants"));

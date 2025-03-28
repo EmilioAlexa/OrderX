@@ -3,24 +3,29 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const { connection } = require("../config/config.db");
 
+
 dotenv.config();
 
 const app = express();
 
 // Endpoint para iniciar sesión y generar token
 const login = (request, response) => {
+    console.log("Datos recibidos:", request.body); // <--- Agregado para depuración
+
     const { email, password } = request.body;
 
     connection.query("SELECT * FROM users WHERE email = ? AND password = ?", [email, password], 
     (error, results) => {
-        if (error) throw error;
+        if (error) {
+            console.error("Error en la consulta SQL:", error);
+            return response.status(500).json({ message: "Error en el servidor" });
+        }
         
         if (results.length > 0) {
-            // Usuario autenticado, generamos token
             const token = jwt.sign(
                 { id: results[0].id_user, email: results[0].email, role: results[0].role }, 
                 process.env.JWT_SECRET, 
-                { expiresIn: "2h" } // Token válido por 2 horas
+                { expiresIn: "1h" }
             );
 
             response.status(200).json({ message: "Login exitoso", token });

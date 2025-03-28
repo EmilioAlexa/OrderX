@@ -1,221 +1,189 @@
-
-
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-  }
-  
-  @keyframes logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-      animation: logo-spin infinite 20s linear;
-    }
-  }
-  
- 
-  
-  .read-the-docs {
-    color: #888;
-  }
-/* css del App.css   */
-
 body{
-    background-color: #111315;
-    font-family: 'Poppins', sans-serif;
+  background-color: #111315;
+  font-family: 'Poppins', sans-serif;
 }
 
 .login-container{
-    display: flex;
-    height: 549px;
-    padding: 74px 115px;
-    align-items: center;
-    gap: 10px;
-    border-radius: 50px;
-    background: #292C2D;
+  display: flex;
+  height: 549px;
+  padding: 74px 115px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 50px;
+  background: #292C2D;
 }
 
 .login-box h1{
-    color: #FBFBFB;
-    text-align: center;
-    margin: 0;
-    font-size: 45px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+  color: #FBFBFB;
+  text-align: center;
+  margin: 0;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .login-box p{
-    color: #FBFBFB;
-    text-align: center;
-    font-size: 16px;
-    margin: 0;
-    font-style: normal ;
-    font-weight: 400;
-    line-height: normal;
+  color: #FBFBFB;
+  text-align: center;
+  font-size: 16px;
+  margin: 0;
+  font-style: normal ;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .login-box{
-    display: flex;
-    width: 527px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 32px;
+  display: flex;
+  width: 527px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
 }
 
 /* Estilos para el formulario */
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 32px;
-    align-self: stretch;
-  }
-  
-  /* Estilos para los labels y sus inputs */
-.label-container {
-    height: 97px;
-    align-self: stretch;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Estilos para los labels */
-  label {
-    color: #FBFBFB;
-    font-family: Poppins, sans-serif;
-    font-size: 16px;
-    line-height: normal;
-    align-self: flex-start; /* Mantiene el label alineado a la izquierda */
-    margin-bottom: 8px;
-  }
-  
-  /* Estilos para los inputs */
-  input {
-    display: flex;
-    height: 65px;
-    padding-left: 25px;  /* Se mantiene el mismo padding-left en ambos */
-    padding-right: 25px;
-    align-items: center;
-    border-radius: 10px;
-    background: #3D4142;
-    width: 477px;
-    border: none;
-  }
-  
-  /* Estilos para el placeholder dentro del input */
-  input::placeholder {
-    color: #777979;
-    font-family: Poppins, sans-serif;
-    font-size: 16px;
-  }
-  
-  /* Contenedor del input de contraseña con el ícono */
-  .password-container {
-    position: relative;
-    width: 477px; /* Ajuste para que coincida con el input de usuario */
-  }
-  
-  .password-container input {
-    width: 100%;
-    padding-left: 25px; /* Igual que el input de username */
-  }
-  
-  /* Estilos para el botón del ojo */
-  .password-container .toggle-password {
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 23px;
-    height: 23px;
-    padding: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-  }
-  
-  
-  /* Estilos para Remember Me */
-  .remember-me {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .remember-me input[type="checkbox"] {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  align-self: stretch;
+}
 
-  /* Cambiar el color del checkbox */
+/* Estilos para los labels y sus inputs */
+.label-container {
+  height: 97px;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos para los labels */
+label {
+  color: #FBFBFB;
+  font-family: Poppins, sans-serif;
+  font-size: 16px;
+  line-height: normal;
+  align-self: flex-start; /* Mantiene el label alineado a la izquierda */
+  margin-bottom: 8px;
+}
+
+/* Estilos para los inputs */
+input {
+  display: flex;
+  height: 65px;
+  padding-left: 25px;  /* Se mantiene el mismo padding-left en ambos */
+  padding-right: 25px;
+  align-items: center;
+  border-radius: 10px;
+  background: #3D4142;
+  width: 477px;
+  border: none;
+}
+
+/* Estilos para el placeholder dentro del input */
+input::placeholder {
+  color: #777979;
+  font-family: Poppins, sans-serif;
+  font-size: 16px;
+}
+
+/* Contenedor del input de contraseña con el ícono */
+.password-container {
+  position: relative;
+  width: 477px; /* Ajuste para que coincida con el input de usuario */
+}
+
+.password-container input {
+  width: 100%;
+  padding-left: 25px; /* Igual que el input de username */
+}
+
+/* Estilos para el botón del ojo */
+.password-container .toggle-password {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 23px;
+  height: 23px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+
+/* Estilos para Remember Me */
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.remember-me input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* Cambiar el color del checkbox */
 input[type="checkbox"] {
-    accent-color: #B78628; /* Color personalizado */
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-  }
-  
-  .remember-me label {
-    color: #C2A67D;
-    font-family: Poppins, sans-serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-  }
+  accent-color: #B78628; /* Color personalizado */
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.remember-me label {
+  color: #C2A67D;
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
 
 /* Estilos para el botón de Login */
 .login-button {
-    display: flex;
-    padding: 20px 50px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 10px;
-    background: var(--pauxiliar, #B78628);
-    border: none;
-    color: white; /* Color del texto */
-    font-family: Poppins, sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.1s ease;
-  }
-  
-  /* Cambio de color al pasar el mouse */
-  .login-button:hover {
-    background: #9c6b21; /* Un tono más oscuro */
-  }
-  
-  /* Efecto al hacer clic */
-  .login-button:active {
-    background: #815618;
-    transform: scale(0.98); /* Le da un efecto de "presionado" */
-  }
-  
-footer p {
-    margin: 0;
+  display: flex;
+  padding: 20px 50px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  background: var(--pauxiliar, #B78628);
+  border: none;
+  color: white; /* Color del texto */
+  font-family: Poppins, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
 }
 
-  footer {
-    padding-top: 112px; /* Espaciado superior */
-    text-align: center; /* Centrar el texto */
-    color: white; /* Color del texto */
-    font-family: Poppins, sans-serif;
-    font-size: 16px;
-    font-style: normal;
-    padding-bottom: 20px; /* Un poco de padding abajo */
-  }
-  
+/* Cambio de color al pasar el mouse */
+.login-button:hover {
+  background: #9c6b21; /* Un tono más oscuro */
+}
+
+/* Efecto al hacer clic */
+.login-button:active {
+  background: #815618;
+  transform: scale(0.98); /* Le da un efecto de "presionado" */
+}
+
+footer p {
+  margin: 0;
+}
+
+footer {
+  padding-top: 112px; /* Espaciado superior */
+  text-align: center; /* Centrar el texto */
+  color: white; /* Color del texto */
+  font-family: Poppins, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  padding-bottom: 20px; /* Un poco de padding abajo */
+}
