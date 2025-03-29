@@ -48,7 +48,7 @@ const Dashboard = () => {
             <div key={i} className={`bar bar-${i + 1}`}></div>
           ))}
         </div>
-        <div className="card-icon" style={{ marginLeft: '450px', marginTop: '15px' }}>
+        <div className="card-icon" style={{ marginLeft: '300px', marginTop: '15px' }}>
           <img src={moneyIcon} alt="" style={{ marginLeft: '8px', marginTop: '8px' }} />
         </div>
         <div className="card-value">$2k</div>
@@ -64,7 +64,7 @@ const Dashboard = () => {
             <div key={i} className={`bar bar-${i + 1}`}></div>
           ))}
         </div>
-        <div className="card-icon" style={{ marginLeft: '450px', marginTop: '15px' }}>
+        <div className="card-icon" style={{ marginLeft: '300px', marginTop: '15px' }}>
           <img src={revenueIcon} alt="" style={{ marginLeft: '8px', marginTop: '8px' }} />
         </div>
         <div className="card-value">$55k</div>
@@ -80,7 +80,7 @@ const Dashboard = () => {
           ))}
         </div>
         <div className="card-value">25 Tables</div>
-        <div className="card-icon" style={{ marginLeft: '450px', marginTop: '15px' }}>
+        <div className="card-icon" style={{ marginLeft: '300px', marginTop: '15px' }}>
           <img src={tableIcon} alt="" style={{ marginLeft: '8px', marginTop: '8px' }} />
         </div>
       </div>
@@ -158,8 +158,8 @@ const Dashboard = () => {
       <div className="logo">OrderX</div>
 
       {/* Menú lateral */}
-      <div className="menu">
-        <div className="menu-item" style={{ backgroundColor: '#C2A67D' }}>
+      <div className="menu" >
+        <div className="menu-item" style={{ backgroundColor: '#C2A67D'}}>
           <div className="menu-icon">
             <img src={dashboardIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
           </div>

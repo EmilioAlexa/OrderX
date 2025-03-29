@@ -35,7 +35,7 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div className="body-container">
+        <div className="body-container" style={{ marginLeft: '600px', marginTop: '6px' }}>
             <div className="login-container">
                 <div className="login-box">
                     <h1>Login!</h1>
