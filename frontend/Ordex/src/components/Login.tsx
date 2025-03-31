@@ -1,19 +1,23 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import '../assets/style/Login.css';
 import eyes from '../assets/mdi_hide.svg';
 
 const Login: React.FC = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const [email, setEmail] = useState(""); // Cambié username a email
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate(); // Hook para redirigir
 
     const handleLogin = async (event: React.FormEvent) => {
         event.preventDefault();
-        setError(""); // Reiniciar errores
+        setError("");
+        setLoading(true);
 
         try {
-            const response = await fetch("http://localhost:3000/login", {
+            const response = await fetch("http://localhost:3000/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -25,17 +29,19 @@ const Login: React.FC = () => {
 
             if (response.ok) {
                 localStorage.setItem("token", data.token);
-                window.location.href = "/dashboard"; // Redirigir a otra página
+                navigate("/dashboard"); // Redirigir con React Router
             } else {
-                setError("Credenciales incorrectas");
+                setError(data.message || "Error al iniciar sesión");
             }
         } catch (error) {
-            setError("Error en el servidor. I ntenta de nuevo.");
+            setError("Error en el servidor. Intenta de nuevo.");
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
-        <div className="body-container" style={{ marginLeft: '350px', marginTop: '6px' }}>
+        <div className="body-container" style={{ marginLeft: '350px', marginTop: '192px' }}>
             <div className="login-container">
                 <div className="login-box">
                     <h1>Login!</h1>
@@ -87,15 +93,16 @@ const Login: React.FC = () => {
                         {error && <p className="error-message">{error}</p>}
 
                         {/* Botón de Login */}
-                        {/* Contenedor del botón para centrar*/}
                         <div className="button-container">
-                        <button type="submit" className="login-button">Login</button>
+                            <button type="submit" className="login-button" disabled={loading}>
+                                {loading ? "Cargando..." : "Login"}
+                            </button>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <footer >
+            <footer>
                 <p>© 2025 OrderX. All Rights Reserved</p>
             </footer>
         </div>
