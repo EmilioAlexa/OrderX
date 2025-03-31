@@ -35,7 +35,7 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div className="body-container" style={{ marginLeft: '600px', marginTop: '6px' }}>
+        <div className="body-container" style={{ marginLeft: '350px', marginTop: '6px' }}>
             <div className="login-container">
                 <div className="login-box">
                     <h1>Login!</h1>
@@ -87,7 +87,10 @@ const Login: React.FC = () => {
                         {error && <p className="error-message">{error}</p>}
 
                         {/* Botón de Login */}
+                        {/* Contenedor del botón para centrar*/}
+                        <div className="button-container">
                         <button type="submit" className="login-button">Login</button>
+                        </div>
                     </form>
                 </div>
             </div>

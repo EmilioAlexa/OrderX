@@ -140,6 +140,23 @@ const Dashboard = () => {
           <div className="dish-price">$55.00</div>
           <div className="dish-status in-stock">In Stock</div>
         </div>
+
+        <div className="dish" style={{ marginTop: '180px', marginLeft: '30px' }}>
+          <img src={chickenDish} alt="Chicken Parmesan" />
+          <div className="dish-name">Chicken Parmesan</div>
+          <div className="dish-details">Serving : 01 person</div>
+          <div className="dish-price">$55.00</div>
+          <div className="dish-status in-stock">In Stock</div>
+        </div>
+
+        <div className="dish" style={{ marginTop: '280px', marginLeft: '30px' }}>
+          <img src={chickenDish} alt="Chicken Parmesan" />
+          <div className="dish-name">Chicken Parmesan</div>
+          <div className="dish-details">Serving : 01 person</div>
+          <div className="dish-price">$55.00</div>
+          <div className="dish-status in-stock">In Stock</div>
+        </div>
+        
         {/* Repite la estructura para los otros platos */}
       </div>
 

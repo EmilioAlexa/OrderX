@@ -2,7 +2,12 @@ body{
   background-color: #111315;
   font-family: 'Poppins', sans-serif;
 }
-
+.button-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  width: 100%; /* Asegura que ocupe todo el ancho del formulario */
+  margin-top: 0px; /* Ajusta la separación desde arriba */
+}
 .login-container{
   display: flex;
   height: 549px;
