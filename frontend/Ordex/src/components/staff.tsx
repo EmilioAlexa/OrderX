@@ -16,6 +16,8 @@ import orderIcon from '../assets/order-icon.png';
 import chickenDish from '../assets/chicken.png';
 import Dots from '../assets/dots.png';
 
+import { Link } from 'react-router-dom';
+
 interface StaffMember {
   id: string;
   name: string;
@@ -67,18 +69,19 @@ const StaffManagement: React.FC = () => {
   }, []);
 
   // Estado para el formulario
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    role: '',
-    phone: '',
-    salary: '',
-    dob: '',
-    startTime: '',
-    endTime: '',
-    address: '',
-    details: ''
-  });
+// En el estado del formulario, cambia dob por age:
+const [formData, setFormData] = useState({
+  fullName: '',
+  email: '',
+  role: '',
+  phone: '',
+  salary: '',
+  age: '', // Cambiado de dob a age
+  startTime: '',
+  endTime: '',
+  address: '',
+  details: ''
+});
 
   const handleAddStaffClick = () => {
     setIsEditing(false);
@@ -95,7 +98,7 @@ const StaffManagement: React.FC = () => {
       role: '',
       phone: '',
       salary: '',
-      dob: '',
+      age: '',
       startTime: '',
       endTime: '',
       address: '',
@@ -140,7 +143,7 @@ const StaffManagement: React.FC = () => {
           role: formData.role || 'Staff',
           email: formData.email,
           phone: formData.phone,
-          age: formData.dob ? `${new Date().getFullYear() - new Date(formData.dob).getFullYear()} yr` : 'N/A',
+          age: formData.age ? `${formData.age} yr` : 'N/A', // Usamos el valor directo
           salary: formData.salary ? `$${formData.salary}` : '$0.00',
           timings: `${formData.startTime || 'N/A'} to ${formData.endTime || 'N/A'}`,
           image: profileImage || staff.image
@@ -154,12 +157,12 @@ const StaffManagement: React.FC = () => {
         role: formData.role || 'Staff',
         email: formData.email,
         phone: formData.phone,
-        age: formData.dob ? `${new Date().getFullYear() - new Date(formData.dob).getFullYear()} yr` : 'N/A',
+        age: formData.age ? `${formData.age} yr` : 'N/A', // Usamos el valor directo
         salary: formData.salary ? `$${formData.salary}` : '$0.00',
         timings: `${formData.startTime || 'N/A'} to ${formData.endTime || 'N/A'}`,
         image: profileImage || profileIcon
       };
-
+  
       setStaffList([...staffList, newStaff]);
     }
     
@@ -193,10 +196,8 @@ const StaffManagement: React.FC = () => {
       setCurrentStaffId(staffId);
       setProfileImage(staffToEdit.image || null);
       
-      // Parsear los datos existentes para el formulario
-      const dobYear = staffToEdit.age.includes('yr') ? 
-        new Date().getFullYear() - parseInt(staffToEdit.age) : '';
-      const dob = dobYear ? `${dobYear}-01-01` : '';
+      // Extraer la edad numérica (elimina " yr")
+      const age = staffToEdit.age.replace(' yr', '');
       
       const [startTime, endTime] = staffToEdit.timings.split(' to ');
       
@@ -206,7 +207,7 @@ const StaffManagement: React.FC = () => {
         role: staffToEdit.role,
         phone: staffToEdit.phone,
         salary: staffToEdit.salary.replace('$', ''),
-        dob,
+        age, // Usamos la edad directamente
         startTime,
         endTime,
         address: '',
@@ -224,15 +225,19 @@ const StaffManagement: React.FC = () => {
   };
 
   return (
-    <div className="container" onClick={() => showActionsModal.show && handleCloseActionsModal()}>
-      <div className="sidebar"></div>
+    <div className="container2" onClick={() => showActionsModal.show && handleCloseActionsModal()}>
+      <div className="sidebar2"></div>
       <div className="logo">OrderX</div>
       
       <div className="menu">
+     
         <div className="menu-item">
-          <div className="menu-icon">
+        <Link to="/dashboard" style={{textDecoration:'none'}}>
+        <div className="menu-icon">
             <img src={dashboardIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
           </div>
+        </Link>
+          
           <div className="menu-text">Dashboard</div>
         </div>
         <div className="menu-item">
@@ -261,9 +266,12 @@ const StaffManagement: React.FC = () => {
         </div>
       </div>
       
+      <Link to="/login" style={{textDecoration:'none'}}>
       <div className="logout-icon">
         <img src={logoutIcon} alt=""/>
       </div>
+      </Link>
+      
       <div className="logout-container">Logout</div>
       
       <div className="page-title">Staff Management</div>
@@ -275,7 +283,11 @@ const StaffManagement: React.FC = () => {
       <div className="icon-3">
         <img src={notificationIcon} alt="" style={{ height: '40px'}} />
       </div>
+
+      <Link to="/profile" style={{textDecoration:'none'}}>
       <img className="profile-pic" src={profileIcon} alt="Profile" />
+      </Link>
+      
       
       <div className="staff-title">Staff ({staffList.length})</div>
       
@@ -291,7 +303,7 @@ const StaffManagement: React.FC = () => {
       </div>
       
       <div className="column-header" style={{left: '1095px', top: '278px'}}>Salary</div>
-      <div className="column-header" style={{left: '1205px', top: '278px'}}>Timings</div>
+      
       <div className="column-header" style={{left: '555px', top: '278px'}}>Email</div>
       <div className="column-header" style={{left: '833px', top: '278px'}}>Phone</div>
       <div className="column-header" style={{left: '1015px', top: '278px', textAlign: 'right'}}>Age</div>
@@ -315,7 +327,7 @@ const StaffManagement: React.FC = () => {
             data-staff-id={staff.id}
           >
             <div className="staff-cell" style={{left: '906px', top: '19px'}}>{staff.salary}</div>
-            <div className="staff-cell" style={{left: '1003px', top: '19px'}}>{staff.timings}</div>
+            
             <div className="staff-cell" style={{left: '384px', top: '19px'}}>{staff.email}</div>
             <div className="staff-cell" style={{left: '662px', top: '19px'}}>{staff.phone}</div>
             <div className="staff-cell" style={{left: '838px', top: '19px'}}>{staff.age}</div>
@@ -452,47 +464,24 @@ const StaffManagement: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="form-group">
-                  <label>Date of birth</label>
-                  <div className="form-input with-calendar">
-                    <input 
-                      type="date" 
-                      name="dob"
-                      placeholder="Enter date of birth" 
-                      value={formData.dob}
-                      onChange={handleInputChange}
-                    />
-                    
-                  </div>
-                </div>
+               {/* Reemplaza el campo de fecha de nacimiento por este campo de edad */}
+<div className="form-group">
+  <label>Age</label>
+  <div className="form-input">
+    <input 
+      type="number" 
+      name="age"
+      placeholder="Enter age" 
+      value={formData.age}
+      onChange={handleInputChange}
+      min="1"
+      max="99"
+    />
+  </div>
+</div>
                 
-                <div className="form-group">
-                  <label>Shift start timing</label>
-                  <div className="form-input with-clock">
-                    <input 
-                      type="time" 
-                      name="startTime"
-                      placeholder="Enter start timing" 
-                      value={formData.startTime}
-                      onChange={handleInputChange}
-                    />
-                    
-                  </div>
-                </div>
                 
-                <div className="form-group">
-                  <label>Shift end timing</label>
-                  <div className="form-input with-clock">
-                    <input 
-                      type="time" 
-                      name="endTime"
-                      placeholder="Enter end timing" 
-                      value={formData.endTime}
-                      onChange={handleInputChange}
-                    />
-                  
-                  </div>
-                </div>
+
                 
                 <div className="form-group full-width">
                   <label>Address</label>

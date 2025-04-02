@@ -17,6 +17,7 @@ import inventoryIcon from '../assets/inventory-icon.png';
 import orderIcon from '../assets/order-icon.png';
 import chickenDish from '../assets/chicken.png';
 
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   return (
@@ -31,12 +32,14 @@ const Dashboard = () => {
         <img src={notificationIcon} alt="" style={{ height: '40px' }} />
       </div>
 
+      <Link to="/profile" style={{textDecoration:'none'}}>
       <img
         className="profile-image"
         src={profileIcon}
         alt="Imagen de perfil"
         style={{ cursor: 'pointer', marginTop: '12px' }}
       />
+      </Link>
 
       {/* Tarjeta 1: Daily Sales */}
       <div className="card card-1">
@@ -161,6 +164,7 @@ const Dashboard = () => {
       </div>
 
       {/* Logout */}
+      <Link to="/login" style={{textDecoration:'none'}}>
       <div className="logout" style={{ cursor: 'pointer' }}>
         <div className="logout-icon">
           <img src={logoutIcon} alt="" />
@@ -170,6 +174,8 @@ const Dashboard = () => {
           Logout
         </div>
       </div>
+      </Link>
+      
 
       {/* Logo */}
       <div className="logo">OrderX</div>
@@ -188,12 +194,16 @@ const Dashboard = () => {
           </div>
           <div className="menu-text">Menu</div>
         </div>
+        <Link to="/staff" style={{textDecoration:'none'}}>
         <div className="menu-item">
           <div className="menu-icon">
             <img src={staffIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
           </div>
           <div className="menu-text">Staff</div>
         </div>
+        </Link>
+       
+
         <div className="menu-item">
           <div className="menu-icon">
             <img src={inventoryIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
