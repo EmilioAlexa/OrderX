@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../assets/style/Login.css';
 import eyes from '../assets/mdi_hide.svg';
+import api from "../middleware/api";
+
+import { useAuth } from "../context/AuthContext"; // Import Auth Context
+
 
 const Login: React.FC = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -11,35 +15,32 @@ const Login: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate(); // Hook para redirigir
 
-    const handleLogin = async (event: React.FormEvent) => {
-        event.preventDefault();
-        setError("");
-        setLoading(true);
 
-        try {
-            const response = await fetch("http://localhost:3000/auth/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email, password }),
-            });
+const handleLogin = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setError("");
+    setLoading(true);
 
-            const data = await response.json();
+    try {
+        const response = await api.post("/auth/login", { email, password });
 
-            if (response.ok) {
-                localStorage.setItem("token", data.token);
-                navigate("/dashboard"); // Redirigir con React Router
-            } else {
-                setError(data.message || "Error al iniciar sesión");
-            }
-        } catch (error) {
-            setError("Error en el servidor. Intenta de nuevo.");
-        } finally {
-            setLoading(false);
+        if (response.data.token) {
+            console.log("Login successful, token:", response.data.token);
+
+       localStorage.setItem("token", response.data.token); 
+          
+            navigate("/dashboard");
+        } else {
+            console.error("Token is missing from response");
+            setError("Error al iniciar sesión");
         }
-    };
-
+    } catch (error) {
+        console.error("Login error:", error);
+        setError("Error al iniciar sesión");
+    } finally {
+        setLoading(false);
+    }
+};
     return (
         <div className="body-container" style={{ marginLeft: '350px', marginTop: '192px' }}>
             <div className="login-container">
