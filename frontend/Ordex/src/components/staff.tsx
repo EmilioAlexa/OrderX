@@ -3,17 +3,12 @@ import '../assets/style/staff.css';
 import arrowIcon from '../assets/arrow-icon.png';
 import notificationIcon from '../assets/notification-ico.png';
 import profileIcon from '../assets/profile-icon.png';
-import moneyIcon from '../assets/money-icon.png';
-import revenueIcon from '../assets/revenue-icon.png';
-import tableIcon from '../assets/table-icon.png';
-import exportIcon from '../assets/export-icon.png';
 import logoutIcon from '../assets/logout-icon.png';
 import dashboardIcon from '../assets/dashboard-icon.png';
 import bookIcon from '../assets/book-icon.png';
 import staffIcon from '../assets/staff-icon.png';
 import inventoryIcon from '../assets/inventory-icon.png';
 import orderIcon from '../assets/order-icon.png';
-import chickenDish from '../assets/chicken.png';
 import Dots from '../assets/dots.png';
 
 import { Link } from 'react-router-dom';
