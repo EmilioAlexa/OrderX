@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Create Axios instance
 const api = axios.create({
-    baseURL: "http://18.117.184.66:3000", // Use environment variable if available
+    baseURL: "http://localhost:3000", // Use environment variable if available
     headers: {
         "Content-Type": "application/json",
     },
