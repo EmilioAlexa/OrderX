@@ -5,6 +5,9 @@ import Login from "./components/Login";
 import Staff from "./components/staff";
 import Profile from "./components/profile/profile"; 
 import ProfileAdd from "./components/profile/profile.add"; 
+import Menu from "./components/menu/profile"; 
+import Inventory from "./components/inventory/profile"; 
+import Order from "./components/order/profile"; 
 
 const AppRouter: React.FC = () => {
   return (
@@ -16,6 +19,9 @@ const AppRouter: React.FC = () => {
         <Route path="/staff" element={<Staff />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profileadd" element={<ProfileAdd />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/inventory" element={<Inventory />} />
+        <Route path="/order" element={<Order />} />
       </Routes>
     </BrowserRouter>
   );

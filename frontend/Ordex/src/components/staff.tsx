@@ -106,6 +106,7 @@ const StaffManagement: React.FC = () => {
 
   const handleCloseModal = () => {
     setShowAddStaffModal(false);
+    window.location.reload()
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -125,24 +126,30 @@ const StaffManagement: React.FC = () => {
       phone: formData.phone,
       age: parseInt(formData.age),
       salary: parseFloat(formData.salary),
-      role_id: 1,
-      id_restaurant_fk: 3 // Ajustar según el restaurante correspondiente
+      role_id: parseInt(formData.role), // Asegúrate de que sea número
+      id_restaurant_fk: 3 // Ajusta según tu lógica
     };
-
+  
     try {
       if (isEditing && currentStaffId) {
-        await api.put(`/employees`, staffData, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`
+        // ¡Agrega id_employee al body para PUT!
+        await api.put("/employees", 
+          { ...staffData, id_employee: parseInt(currentStaffId) }, // ← Corrección clave
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
           }
-        });
+        );
+        // Actualiza el estado local
         setStaffList(staffList.map(staff => 
-          staff.id_employee.toString() === currentStaffId ? {
-            ...staff,
-            ...staffData
+          staff.id_employee.toString() === currentStaffId ? { 
+            ...staff, 
+            ...staffData 
           } : staff
         ));
       } else {
+        // POST para nuevo empleado
         const response = await api.post('/employees', staffData, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -247,9 +254,12 @@ const StaffManagement: React.FC = () => {
           <div className="menu-text">Dashboard</div>
         </div>
         <div className="menu-item">
-          <div className="menu-icon">
+        <Link to="/menu" style={{textDecoration:'none'}}>
+        <div className="menu-icon">
             <img src={bookIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
           </div>
+     </Link>
+
           <div className="menu-text">Menu</div>
         </div>
         <div className="menu-item" style={{ backgroundColor: '#C2A67D'}}>
@@ -259,15 +269,21 @@ const StaffManagement: React.FC = () => {
           <div className="menu-text">Staff</div>
         </div>
         <div className="menu-item">
-          <div className="menu-icon">
+        <Link to="/inventory" style={{textDecoration:'none'}}>
+        <div className="menu-icon">
             <img src={inventoryIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
           </div>
+     </Link>
+
           <div className="menu-text">Inventory</div>
         </div>
         <div className="menu-item">
-          <div className="menu-icon">
+        <Link to="/order" style={{textDecoration:'none'}}>
+        <div className="menu-icon">
             <img src={orderIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
           </div>
+     </Link>
+
           <div className="menu-text">Order/Table</div>
         </div>
       </div>
@@ -307,13 +323,13 @@ const StaffManagement: React.FC = () => {
         </div>
       </div>
       
-      <div className="column-header" style={{left: '1095px', top: '278px'}}>Salary</div>
-      <div className="column-header" style={{left: '555px', top: '278px'}}>Email</div>
-      <div className="column-header" style={{left: '833px', top: '278px'}}>Phone</div>
-      <div className="column-header" style={{left: '1015px', top: '278px', textAlign: 'right'}}>Age</div>
-      <div className="column-header" style={{left: '227px', top: '278px'}}>ID</div>
-      <div className="column-header" style={{left: '287px', top: '278px'}}>Name</div>
-      <div className="checkbox" style={{left: '196px', top: '284px'}}></div>
+      <div className="column-header" style={{left: '1160px', top: '278px'}}>Salary</div>
+      <div className="column-header" style={{left: '520px', top: '278px'}}>Email</div>
+      <div className="column-header" style={{left: '800px', top: '278px'}}>Phone</div>
+      <div className="column-header" style={{left: '980px', top: '278px', textAlign: 'right'}}>Age</div>
+      <div className="column-header" style={{left: '190px', top: '278px'}}>ID</div>
+      <div className="column-header" style={{left: '270px', top: '278px'}}>Name</div>
+      
       
       <div className="tabs">
         <div className="tab-active">
@@ -324,16 +340,21 @@ const StaffManagement: React.FC = () => {
       
       <div className="staff-list">
         {staffList.map((staff, i) => (
+          
           <div 
+          
             key={staff.id_employee} 
+            
             className={`staff-row ${i % 2 === 0 ? 'staff-row-dark' : 'staff-row-light'}`}
             ref={el => setRowRef(el, i)}
           >
-            <div className="staff-cell">${staff.salary}</div>
-            <div className="staff-cell">{staff.email}</div>
-            <div className="staff-cell">{staff.phone}</div>
-            <div className="staff-cell">{staff.age} yr</div>
-            <div className="staff-cell">#{staff.id_employee}</div>
+            
+            <div className="staff-cell" style={{ paddingLeft: '10px', marginTop: '6px' }}>#{staff.id_employee}</div>
+            <div className="staff-cell" style={{ marginLeft: '70px', marginTop: '6px' }}>{staff.email}</div>
+            <div className="staff-cell" style={{ marginLeft: '190px', marginTop: '6px' }}>{staff.phone}</div>
+            <div className="staff-cell" style={{ marginLeft: '120px', marginTop: '6px' }}>{staff.age} yr</div>
+            <div className="staff-cell" >${staff.salary}</div>
+            
             <div 
               className="staff-dots" 
               onClick={(e) => handleDotsClick(staff.id_employee.toString(), e, i)}
@@ -341,7 +362,7 @@ const StaffManagement: React.FC = () => {
             >
               <img src={Dots} alt="Actions" />
             </div>
-            <div className="staff-info">
+            <div className="staff-info" style={{ paddingLeft: '20px', marginTop: '6px' }}>
               <img className="staff-avatar" src={profileIcon} alt="Staff" />
               <div className="staff-details">
                 <div className="staff-name">{staff.name}</div>
@@ -455,8 +476,8 @@ const StaffManagement: React.FC = () => {
               </div>
               
               <div className="modal-buttons">
-                <button type="button" className="cancel-button" onClick={handleCloseModal}>Cancel</button>
-                <button type="submit" className="confirm-button">{isEditing ? 'Update' : 'Confirm'}</button>
+                <button type="button" className="cancel-button" onClick={handleCloseModal}>Cancel</button> 
+                <button type="submit" className="confirm-button" >{isEditing ? 'Update' : 'Confirm'} </button>
               </div>
             </form>
           </div>

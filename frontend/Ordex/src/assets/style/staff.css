@@ -284,13 +284,14 @@ background: #5e6364;
   }
   
   .staff-list {
-    left: 176px;
+    left: 157px;
     top: 309px;
     position: absolute;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     display: inline-flex;
+    padding: 0px;
   }
   
   .staff-row {
@@ -897,7 +898,7 @@ cursor: pointer;
 .staff-row {
   display: grid;
   grid-template-columns: 50px 80px minmax(150px, 2fr) minmax(200px, 2fr) 150px 80px 100px 50px;
-  padding: 12px 15px;
+  padding: 0px 0px;
  margin-left: 20px;
   gap: 100px;
   align-items: center;
