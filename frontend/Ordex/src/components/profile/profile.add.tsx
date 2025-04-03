@@ -36,12 +36,14 @@ const Profile: React.FC = () => {
                     </div>
                 </Link>
                     
-                    <div className={styles.menuItem}>
+                <Link to="/menu" style={{textDecoration:'none'}}>
+                <div className={styles.menuItem}>
                         <div className={styles.menuIcon}>
                             <img src={bookIcon} alt="Menu" />
                         </div>
                         <div className={styles.menuText}>Menu</div>
                     </div>
+                 </Link>
                     
                     <Link to="/staff" style={{textDecoration:'none'}}>
                     <div className={styles.menuItem}>
@@ -53,19 +55,24 @@ const Profile: React.FC = () => {
                     </Link>
                     
                     
-                    <div className={styles.menuItem}>
+                    <Link to="/inventory" style={{textDecoration:'none'}}>
+                    <div className={styles.menuItem} style={{ backgroundColor: '#C2A67D'}}>
                         <div className={styles.menuIcon}>
                             <img src={inventoryIcon} alt="Inventory" />
                         </div>
                         <div className={styles.menuText}>Inventory</div>
                     </div>
+                     </Link>
                     
+                     <Link to="/order" style={{textDecoration:'none'}}>
                     <div className={styles.menuItem}>
                         <div className={styles.menuIcon}>
                             <img src={orderIcon} alt="Order/Table" />
                         </div>
                         <div className={styles.menuText}>Order/Table</div>
                     </div>
+                      </Link>
+
                 </div>
                 <Link to="/login" style={{textDecoration:'none'}}>
                 <div className={styles.logoutContainer}>
