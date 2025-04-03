@@ -27,9 +27,7 @@ const verifyToken = (request, response, next) => {
                     return response.status(500).json({ message: "Error en el servidor" });
                 }
 
-                if (results.length === 0) {
-                    return response.status(401).json({ message: "Token inválido o expirado. Por favor, inicia sesión de nuevo." });
-                }
+                
 
                 next(); //  Token válido, continuar con la siguiente función
             }

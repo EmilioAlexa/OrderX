@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 import '../assets/style/Login.css';
 import eyes from '../assets/mdi_hide.svg';
 import api from "../middleware/api";
@@ -16,31 +16,37 @@ const Login: React.FC = () => {
     const navigate = useNavigate(); // Hook para redirigir
 
 
-const handleLogin = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setError("");
-    setLoading(true);
-
-    try {
-        const response = await api.post("/auth/login", { email, password });
-
-        if (response.data.token) {
-            console.log("Login successful, token:", response.data.token);
-
-       localStorage.setItem("token", response.data.token); 
-          
-            navigate("/dashboard");
-        } else {
-            console.error("Token is missing from response");
+    const handleLogin = async (event: React.FormEvent) => {
+        event.preventDefault();
+        setError("");
+        setLoading(true);
+    
+        try {
+            const response = await api.post("/auth/login", { email, password });
+    
+            if (response.data.token) {
+                console.log("Login successful, token:", response.data.token);
+    
+                // Store the token in localStorage
+                localStorage.setItem("token", response.data.token);
+    
+                // Send email and token to the server to store it
+                await api.post("/", { email, token: response.data.token });
+    
+                // Navigate to the dashboard
+                navigate("/dashboard");
+            } else {
+                console.error("Token is missing from response");
+                setError("Error al iniciar sesión");
+            }
+        } catch (error) {
+            console.error("Login error:", error);
             setError("Error al iniciar sesión");
+        } finally {
+            setLoading(false);
         }
-    } catch (error) {
-        console.error("Login error:", error);
-        setError("Error al iniciar sesión");
-    } finally {
-        setLoading(false);
-    }
-};
+    };
+    
     return (
         <div className="body-container" style={{ marginLeft: '350px', marginTop: '192px' }}>
             <div className="login-container">

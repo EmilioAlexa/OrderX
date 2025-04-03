@@ -37,6 +37,7 @@ const login = (request, response) => {
             { id: user.id_user, email: user.email, role: user.role },
             process.env.JWT_SECRET,
             { expiresIn: "1h" }
+        
         );
 
         response.status(200).json({ message: "Login exitoso", token });

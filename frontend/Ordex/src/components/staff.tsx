@@ -1,54 +1,35 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import api from "../middleware/api";
+import { Link } from 'react-router-dom';
 import '../assets/style/staff.css';
 import arrowIcon from '../assets/arrow-icon.png';
 import notificationIcon from '../assets/notification-ico.png';
 import profileIcon from '../assets/profile-icon.png';
-import moneyIcon from '../assets/money-icon.png';
-import revenueIcon from '../assets/revenue-icon.png';
-import tableIcon from '../assets/table-icon.png';
-import exportIcon from '../assets/export-icon.png';
 import logoutIcon from '../assets/logout-icon.png';
 import dashboardIcon from '../assets/dashboard-icon.png';
 import bookIcon from '../assets/book-icon.png';
 import staffIcon from '../assets/staff-icon.png';
 import inventoryIcon from '../assets/inventory-icon.png';
 import orderIcon from '../assets/order-icon.png';
-import chickenDish from '../assets/chicken.png';
 import Dots from '../assets/dots.png';
 
-import { Link } from 'react-router-dom';
-
 interface StaffMember {
-  id: string;
+  id_employee: number;
   name: string;
-  role: string;
   email: string;
   phone: string;
-  age: string;
-  salary: string;
-  timings: string;
-  image?: string;
+  age: number;
+  salary: number;
+  role_id: number;
+  estatus: boolean;
 }
 
 const StaffManagement: React.FC = () => {
+  const [staffList, setStaffList] = useState<StaffMember[]>([]);
   const [showAddStaffModal, setShowAddStaffModal] = useState(false);
-  const [profileImage, setProfileImage] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const dotsRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [staffList, setStaffList] = useState<StaffMember[]>([
-    {
-      id: '#101',
-      name: 'Watson Joyce',
-      role: 'Manager',
-      email: 'watsonjoyce112@gmail.com',
-      phone: '+1 (123) 123 4654',
-      age: '45 yr',
-      salary: '$2200.00',
-      timings: '9am to 6pm',
-      image: profileIcon
-    },
-  ]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  
   const [showActionsModal, setShowActionsModal] = useState<{
     show: boolean;
     staffId: string | null;
@@ -58,72 +39,76 @@ const StaffManagement: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [currentStaffId, setCurrentStaffId] = useState<string | null>(null);
 
-  // Función para manejar las referencias de las filas
+  const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const dotsRefs = useRef<(HTMLDivElement | null)[]>([]);
+
   const setRowRef = useCallback((el: HTMLDivElement | null, index: number) => {
     rowRefs.current[index] = el;
   }, []);
 
-  // Función para manejar las referencias de los botones de puntos
   const setDotsRef = useCallback((el: HTMLDivElement | null, index: number) => {
     dotsRefs.current[index] = el;
   }, []);
 
-  // Estado para el formulario
-// En el estado del formulario, cambia dob por age:
-const [formData, setFormData] = useState({
-  fullName: '',
-  email: '',
-  role: '',
-  phone: '',
-  salary: '',
-  age: '', // Cambiado de dob a age
-  startTime: '',
-  endTime: '',
-  address: '',
-  details: ''
-});
-
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    role: '2', // Valor por defecto para Chef (ajustar según tus roles)
+    phone: '',
+    salary: '',
+    age: '',
+    address: '',
+    details: ''
+  });
+  useEffect(() => {
+    const fetchEmployees = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setError('No estás autenticado. Por favor, inicia sesión.');
+        setLoading(false);
+        return;
+      }
+  
+      try {
+        console.log("Token:", token);
+        const response = await api.get("/employees", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setStaffList(response.data);
+      } catch (error) {
+        console.error("Error al obtener empleados:", error);
+        setError('Error al cargar los empleados. Verifica tu autenticación.');
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchEmployees();
+  }, []);
+  
   const handleAddStaffClick = () => {
     setIsEditing(false);
     setCurrentStaffId(null);
     setShowAddStaffModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowAddStaffModal(false);
-    setProfileImage(null);
     setFormData({
       fullName: '',
       email: '',
-      role: '',
+      role: '1',
       phone: '',
       salary: '',
       age: '',
-      startTime: '',
-      endTime: '',
       address: '',
       details: ''
     });
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          setProfileImage(event.target.result as string);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
+  const handleCloseModal = () => {
+    setShowAddStaffModal(false);
   };
 
-  const triggerFileInput = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -131,42 +116,46 @@ const [formData, setFormData] = useState({
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (isEditing && currentStaffId) {
-      // Editar staff existente
-      setStaffList(staffList.map(staff => 
-        staff.id === currentStaffId ? {
-          ...staff,
-          name: formData.fullName,
-          role: formData.role || 'Staff',
-          email: formData.email,
-          phone: formData.phone,
-          age: formData.age ? `${formData.age} yr` : 'N/A', // Usamos el valor directo
-          salary: formData.salary ? `$${formData.salary}` : '$0.00',
-          timings: `${formData.startTime || 'N/A'} to ${formData.endTime || 'N/A'}`,
-          image: profileImage || staff.image
-        } : staff
-      ));
-    } else {
-      // Agregar nuevo staff
-      const newStaff: StaffMember = {
-        id: `#${Math.floor(100 + Math.random() * 900)}`,
-        name: formData.fullName,
-        role: formData.role || 'Staff',
-        email: formData.email,
-        phone: formData.phone,
-        age: formData.age ? `${formData.age} yr` : 'N/A', // Usamos el valor directo
-        salary: formData.salary ? `$${formData.salary}` : '$0.00',
-        timings: `${formData.startTime || 'N/A'} to ${formData.endTime || 'N/A'}`,
-        image: profileImage || profileIcon
-      };
-  
-      setStaffList([...staffList, newStaff]);
+    const staffData = {
+      name: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      age: parseInt(formData.age),
+      salary: parseFloat(formData.salary),
+      role_id: 1,
+      id_restaurant_fk: 3 // Ajustar según el restaurante correspondiente
+    };
+
+    try {
+      if (isEditing && currentStaffId) {
+        await api.put(`/employees`, staffData, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        });
+        setStaffList(staffList.map(staff => 
+          staff.id_employee.toString() === currentStaffId ? {
+            ...staff,
+            ...staffData
+          } : staff
+        ));
+      } else {
+        const response = await api.post('/employees', staffData, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        });
+        setStaffList([...staffList, response.data]);
+      }
+      
+      handleCloseModal();
+    } catch (error) {
+      console.error("Error al guardar empleado:", error);
+      setError('Error al guardar el empleado');
     }
-    
-    handleCloseModal();
   };
 
   const handleDotsClick = (staffId: string, e: React.MouseEvent, index: number) => {
@@ -190,26 +179,18 @@ const [formData, setFormData] = useState({
   };
 
   const handleEditStaff = (staffId: string) => {
-    const staffToEdit = staffList.find(staff => staff.id === staffId);
+    const staffToEdit = staffList.find(staff => staff.id_employee.toString() === staffId);
     if (staffToEdit) {
       setIsEditing(true);
       setCurrentStaffId(staffId);
-      setProfileImage(staffToEdit.image || null);
-      
-      // Extraer la edad numérica (elimina " yr")
-      const age = staffToEdit.age.replace(' yr', '');
-      
-      const [startTime, endTime] = staffToEdit.timings.split(' to ');
       
       setFormData({
         fullName: staffToEdit.name,
         email: staffToEdit.email,
-        role: staffToEdit.role,
+        role: staffToEdit.role_id.toString(),
         phone: staffToEdit.phone,
-        salary: staffToEdit.salary.replace('$', ''),
-        age, // Usamos la edad directamente
-        startTime,
-        endTime,
+        salary: staffToEdit.salary.toString(),
+        age: staffToEdit.age.toString(),
         address: '',
         details: ''
       });
@@ -219,10 +200,37 @@ const [formData, setFormData] = useState({
     handleCloseActionsModal();
   };
 
-  const handleDeleteStaff = (staffId: string) => {
-    setStaffList(staffList.filter(staff => staff.id !== staffId));
-    handleCloseActionsModal();
+  const handleDeleteStaff = async (staffId: string) => {
+    try {
+        const token = localStorage.getItem("token");
+        if (!token) throw new Error("No authentication token found!");
+
+        await api.delete(`/employees`, {
+            data: { id_employee: staffId },  // Corrected key name
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        setStaffList(staffList.filter(staff => staff.id_employee.toString() !== staffId));
+        handleCloseActionsModal();
+    } catch (error: any) {
+        console.error("Error al eliminar empleado:", error.response?.data || error.message);
+        setError('Error al eliminar el empleado');
+    }
+};
+
+  const getRoleName = (roleId: number) => {
+    switch(roleId) {
+      case 1: return 'Admin';
+      case 2: return 'Chef';
+      case 3: return 'Mesero';
+      default: return 'Staff';
+    }
   };
+
+  if (loading) return <div className="loading">Cargando empleados...</div>;
+  if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="container2" onClick={() => showActionsModal.show && handleCloseActionsModal()}>
@@ -230,14 +238,12 @@ const [formData, setFormData] = useState({
       <div className="logo">OrderX</div>
       
       <div className="menu">
-     
         <div className="menu-item">
-        <Link to="/dashboard" style={{textDecoration:'none'}}>
-        <div className="menu-icon">
-            <img src={dashboardIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
-          </div>
-        </Link>
-          
+          <Link to="/dashboard" style={{textDecoration:'none'}}>
+            <div className="menu-icon">
+              <img src={dashboardIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
+            </div>
+          </Link>
           <div className="menu-text">Dashboard</div>
         </div>
         <div className="menu-item">
@@ -267,9 +273,9 @@ const [formData, setFormData] = useState({
       </div>
       
       <Link to="/login" style={{textDecoration:'none'}}>
-      <div className="logout-icon">
-        <img src={logoutIcon} alt=""/>
-      </div>
+        <div className="logout-icon">
+          <img src={logoutIcon} alt=""/>
+        </div>
       </Link>
       
       <div className="logout-container">Logout</div>
@@ -285,9 +291,8 @@ const [formData, setFormData] = useState({
       </div>
 
       <Link to="/profile" style={{textDecoration:'none'}}>
-      <img className="profile-pic" src={profileIcon} alt="Profile" />
+        <img className="profile-pic" src={profileIcon} alt="Profile" />
       </Link>
-      
       
       <div className="staff-title">Staff ({staffList.length})</div>
       
@@ -303,7 +308,6 @@ const [formData, setFormData] = useState({
       </div>
       
       <div className="column-header" style={{left: '1095px', top: '278px'}}>Salary</div>
-      
       <div className="column-header" style={{left: '555px', top: '278px'}}>Email</div>
       <div className="column-header" style={{left: '833px', top: '278px'}}>Phone</div>
       <div className="column-header" style={{left: '1015px', top: '278px', textAlign: 'right'}}>Age</div>
@@ -321,40 +325,33 @@ const [formData, setFormData] = useState({
       <div className="staff-list">
         {staffList.map((staff, i) => (
           <div 
-            key={i} 
-            ref={el => setRowRef(el, i)}
+            key={staff.id_employee} 
             className={`staff-row ${i % 2 === 0 ? 'staff-row-dark' : 'staff-row-light'}`}
-            data-staff-id={staff.id}
+            ref={el => setRowRef(el, i)}
           >
-            <div className="staff-cell" style={{left: '906px', top: '19px'}}>{staff.salary}</div>
-            
-            <div className="staff-cell" style={{left: '384px', top: '19px'}}>{staff.email}</div>
-            <div className="staff-cell" style={{left: '662px', top: '19px'}}>{staff.phone}</div>
-            <div className="staff-cell" style={{left: '838px', top: '19px'}}>{staff.age}</div>
-            <div className="staff-cell" style={{left: '56px', top: '19px'}}>{staff.id}</div>
+            <div className="staff-cell">${staff.salary}</div>
+            <div className="staff-cell">{staff.email}</div>
+            <div className="staff-cell">{staff.phone}</div>
+            <div className="staff-cell">{staff.age} yr</div>
+            <div className="staff-cell">#{staff.id_employee}</div>
             <div 
-              ref={el => setDotsRef(el, i)}
               className="staff-dots" 
-              style={{left: '1170px', top: '19px'}}
-              onClick={(e) => handleDotsClick(staff.id, e, i)}
+              onClick={(e) => handleDotsClick(staff.id_employee.toString(), e, i)}
+              ref={el => setDotsRef(el, i)}
             >
-              <img src={Dots} alt="Actions"/>
+              <img src={Dots} alt="Actions" />
             </div>
-            
-            <div className="staff-info" style={{left: '116px', top: '10px'}}>
-              <img className="staff-avatar" src={staff.image || profileIcon} alt="Staff" />
+            <div className="staff-info">
+              <img className="staff-avatar" src={profileIcon} alt="Staff" />
               <div className="staff-details">
                 <div className="staff-name">{staff.name}</div>
-                <div className="staff-role">{staff.role}</div>
+                <div className="staff-role">{getRoleName(staff.role_id)}</div>
               </div>
             </div>
-            
-            <div className="checkbox" style={{left: '25px', top: '24px'}}></div>
           </div>
         ))}
       </div>
       
-      {/* Modal para Add/Edit Staff */}
       {showAddStaffModal && (
         <div className="modal-overlay">
           <div className="add-staff-modal">
@@ -362,36 +359,7 @@ const [formData, setFormData] = useState({
               <div className="modal-header">
                 <div className="modal-title">{isEditing ? 'Edit Staff' : 'Add Staff'}</div>
                 <div className="modal-close" onClick={handleCloseModal}>
-                <img src={arrowIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }}/>
-                </div>
-              </div>
-              
-              <div className="profile-picture-section">
-                <div className="profile-image-container">
-                  {profileImage ? (
-                    <img 
-                      src={profileImage} 
-                      alt="Profile Preview" 
-                      className="profile-preview" 
-                    />
-                  ) : (
-                    <div className="profile-placeholder">
-                      <span>No image selected</span>
-                    </div>
-                  )}
-                </div>
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleImageChange}
-                  accept="image/*"
-                  style={{ display: 'none' }}
-                />
-                <div 
-                  className="change-picture-link" 
-                  onClick={triggerFileInput}
-                >
-                  {profileImage ? 'Change Profile Picture' : 'Select Profile Picture'}
+                  <img src={arrowIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }}/>
                 </div>
               </div>
               
@@ -427,14 +395,16 @@ const [formData, setFormData] = useState({
                 <div className="form-group">
                   <label>Role</label>
                   <div className="form-input with-dropdown">
-                    <input 
-                      type="text" 
+                    <select
                       name="role"
-                      placeholder="Select role" 
                       value={formData.role}
                       onChange={handleInputChange}
-                    />
-                    <div className="dropdown-icon"></div>
+                      required
+                    >
+                      <option value="1">Admin</option>
+                      <option value="2">Chef</option>
+                      <option value="3">Mesero</option>
+                    </select>
                   </div>
                 </div>
                 
@@ -447,6 +417,7 @@ const [formData, setFormData] = useState({
                       placeholder="Enter phone number" 
                       value={formData.phone}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
                 </div>
@@ -455,56 +426,30 @@ const [formData, setFormData] = useState({
                   <label>Salary</label>
                   <div className="form-input">
                     <input 
-                      type="text" 
+                      type="number" 
                       name="salary"
                       placeholder="Enter Salary" 
                       value={formData.salary}
                       onChange={handleInputChange}
+                      required
+                      step="0.01"
                     />
                   </div>
                 </div>
                 
-               {/* Reemplaza el campo de fecha de nacimiento por este campo de edad */}
-<div className="form-group">
-  <label>Age</label>
-  <div className="form-input">
-    <input 
-      type="number" 
-      name="age"
-      placeholder="Enter age" 
-      value={formData.age}
-      onChange={handleInputChange}
-      min="1"
-      max="99"
-    />
-  </div>
-</div>
-                
-                
-
-                
-                <div className="form-group full-width">
-                  <label>Address</label>
+                <div className="form-group">
+                  <label>Age</label>
                   <div className="form-input">
                     <input 
-                      type="text" 
-                      name="address"
-                      placeholder="Enter address" 
-                      value={formData.address}
+                      type="number" 
+                      name="age"
+                      placeholder="Enter age" 
+                      value={formData.age}
                       onChange={handleInputChange}
+                      required
+                      min="18"
+                      max="99"
                     />
-                  </div>
-                </div>
-                
-                <div className="form-group full-width">
-                  <label>Additional details</label>
-                  <div className="form-textarea">
-                    <textarea 
-                      name="details"
-                      placeholder="Enter additional details"
-                      value={formData.details}
-                      onChange={handleInputChange}
-                    ></textarea>
                   </div>
                 </div>
               </div>
@@ -518,7 +463,6 @@ const [formData, setFormData] = useState({
         </div>
       )}
       
-      {/* Modal de acciones (dots) */}
       {showActionsModal.show && showActionsModal.position && (
         <div 
           className="actions-modal-overlay"
@@ -533,15 +477,12 @@ const [formData, setFormData] = useState({
           <div className="actions-modal">
             <div className="actions-modal-content">
               <div className="action-item" onClick={() => showActionsModal.staffId && handleEditStaff(showActionsModal.staffId)}>
-                
                 <div className="action-text">Edit Staff</div>
               </div>
               <div className="action-item" onClick={() => showActionsModal.staffId && handleDeleteStaff(showActionsModal.staffId)}>
-                
                 <div className="action-text">Delete Staff</div>
               </div>
               <div className="action-item">
-               
                 <div className="action-text">Edit status</div>
               </div>
             </div>

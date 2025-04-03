@@ -1,3 +1,5 @@
+
+
 .staff-dots {
 
   position: relative;
@@ -133,7 +135,7 @@ cursor: pointer;
     height: 17.83px;
     left: 215.75px;
     top: 52.92px;
-    position: absolute;
+    
     
     transform-origin: top left;
     overflow: hidden;
@@ -306,7 +308,8 @@ background: #5e6364;
   }
   
   .staff-cell {
-    position: absolute;
+    size: 100px;
+    
     color: #FBFBFB;
     font-size: 14px;
     font-family: Poppins;
@@ -866,3 +869,46 @@ cursor: pointer;
 .close-icon-small::after {
   transform: rotate(-45deg);
 }
+/* Contenedor principal de la tabla */
+.staff-table-container {
+  width: calc(100% - 40px);
+  margin: 20px;
+  overflow-x: auto;
+}
+
+/* Encabezados de la tabla */
+.staff-table-header {
+  display: flex;
+  grid-template-columns: 50px 80px minmax(150px, 2fr) minmax(200px, 2fr) 150px 80px 100px 50px;
+ 
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #e0e0e0;
+  font-weight: 600;
+  color: #555;
+  gap: 10px;
+}
+
+/* Cuerpo de la tabla */
+.staff-table-body {
+  width: 100%;
+}
+
+/* Filas de la tabla */
+.staff-row {
+  display: grid;
+  grid-template-columns: 50px 80px minmax(150px, 2fr) minmax(200px, 2fr) 150px 80px 100px 50px;
+  padding: 12px 15px;
+ margin-left: 20px;
+  gap: 100px;
+  align-items: center;
+}
+
+/* Celdas */
+.staff-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 100px;
+}
+
+/* Alineaciones específicas */
