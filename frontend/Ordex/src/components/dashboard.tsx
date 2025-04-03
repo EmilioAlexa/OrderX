@@ -188,12 +188,16 @@ const Dashboard = () => {
           </div>
           <div className="menu-text">Dashboard</div>
         </div>
+
+        <Link to="/menu" style={{textDecoration:'none'}}>
         <div className="menu-item">
           <div className="menu-icon">
             <img src={bookIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
           </div>
           <div className="menu-text">Menu</div>
         </div>
+                  </Link>
+
         <Link to="/staff" style={{textDecoration:'none'}}>
         <div className="menu-item">
           <div className="menu-icon">
@@ -203,19 +207,24 @@ const Dashboard = () => {
         </div>
         </Link>
        
-
-        <div className="menu-item">
+        <Link to="/inventory" style={{textDecoration:'none'}}>
+                  <div className="menu-item">
           <div className="menu-icon">
             <img src={inventoryIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
           </div>
           <div className="menu-text">Inventory</div>
         </div>
-        <div className="menu-item">
+                  </Link>
+        
+                  <Link to="/order" style={{textDecoration:'none'}}>
+                  <div className="menu-item">
           <div className="menu-icon">
             <img src={orderIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
           </div>
           <div className="menu-text">Order/Table</div>
         </div>
+                  </Link>
+
       </div>
     </div>
   );

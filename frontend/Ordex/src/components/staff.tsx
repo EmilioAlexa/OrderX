@@ -254,9 +254,12 @@ const StaffManagement: React.FC = () => {
           <div className="menu-text">Dashboard</div>
         </div>
         <div className="menu-item">
-          <div className="menu-icon">
+        <Link to="/menu" style={{textDecoration:'none'}}>
+        <div className="menu-icon">
             <img src={bookIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
           </div>
+     </Link>
+
           <div className="menu-text">Menu</div>
         </div>
         <div className="menu-item" style={{ backgroundColor: '#C2A67D'}}>
@@ -266,15 +269,21 @@ const StaffManagement: React.FC = () => {
           <div className="menu-text">Staff</div>
         </div>
         <div className="menu-item">
-          <div className="menu-icon">
+        <Link to="/inventory" style={{textDecoration:'none'}}>
+        <div className="menu-icon">
             <img src={inventoryIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
           </div>
+     </Link>
+
           <div className="menu-text">Inventory</div>
         </div>
         <div className="menu-item">
-          <div className="menu-icon">
+        <Link to="/order" style={{textDecoration:'none'}}>
+        <div className="menu-icon">
             <img src={orderIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
           </div>
+     </Link>
+
           <div className="menu-text">Order/Table</div>
         </div>
       </div>

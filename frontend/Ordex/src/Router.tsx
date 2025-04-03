@@ -4,6 +4,9 @@ import Dashboard from "./components/dashboard"; // Verifica que la mayúscula co
 import Login from "./components/Login"; 
 import Staff from "./components/staff";
 import Profile from "./components/profile/profile"; 
+import Menu from "./components/menu/profile"; 
+import Inventory from "./components/inventory/profile"; 
+import Order from "./components/order/profile"; 
 
 const AppRouter: React.FC = () => {
   return (
@@ -14,6 +17,9 @@ const AppRouter: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/staff" element={<Staff />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/inventory" element={<Inventory />} />
+        <Route path="/order" element={<Order />} />
       </Routes>
     </BrowserRouter>
   );
