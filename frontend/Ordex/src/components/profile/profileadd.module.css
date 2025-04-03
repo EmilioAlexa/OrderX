@@ -1,0 +1,393 @@
+/* profile.module.css */
+.profileContainer {
+    width: 1440px;
+    height: 1080px;
+    position: relative;
+    background: #111315;
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 176px;
+    height: 1080px;
+    position: relative;
+    background: #292C2D;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
+  
+  .logo {
+    width: 80px;
+    height: 24.9px;
+    margin-left: 48px;
+    margin-bottom: 32px;
+    margin-top: 28px;
+    text-align: center;
+    color: #C2A67D;
+    font-size: 20.06px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+  }
+  
+  .menu {
+    width: 176px;
+    margin-left: 27px;
+    display: flex;
+    margin: 0;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .menuItem {
+    width: 120px;
+    height: 84px;
+    background: #292C2D;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .menuItem:hover {
+    background: #3a3f42;
+  }
+  
+  .menuIcon {
+    width: 30.48px;
+    height: 29.75px;
+    margin-bottom: 8px;
+    background: #FBFBFB;
+    border-radius: 9999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .menuIcon img {
+    width: 17px;
+    height: 17px;
+  }
+  
+  .menuText {
+    color: #FBFBFB;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    text-align: center;
+  }
+  
+  .logoutContainer {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #FBFBFB;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    margin-bottom: 28px ;
+  }
+  
+  .logoutIcon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .logoutContainer:hover,
+  .logoutIcon:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+  
+  /* Estilos para el contenido del perfil */
+  .profileContent {
+    display: flex;
+    padding: 40px;
+    gap: 20px;
+    align-items: start;
+    width: 100%;  /* Asegura que ocupe todo el ancho */
+    max-width: 1390px; /* Evita que crezca demasiado */
+    margin-left: 0; /* Asegura que empiece desde la izquierda */
+  }
+
+  
+  .profileHeader {
+    display: flex;           /* Activa flexbox */
+    align-items: center;     /* Centra verticalmente los items */
+    gap: 15px;              /* Espacio entre imagen y texto */
+    width: 285px;
+    height: auto;           /* Mejor que altura fija */
+    padding: 10px;          /* Espacio interno opcional */
+    padding-bottom: 20px;
+  }
+  
+  .profileHeader div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el texto verticalmente */
+  }
+  
+  .profileHeader h3 {
+    color: #FBFBFB;
+    font-family: 'Poppins', sans-serif;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    margin: 0;
+    line-height: normal;         /* Color oscuro para mejor legibilidad */
+  }
+  
+  .profileHeader p {
+    color: var(--sauxiliar, #C2A67D);
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    margin: 0;
+    font-weight: 300;
+    line-height: normal;
+  }
+  
+  .profilePicture{
+    width: 141px;
+    height: 141px;
+  }
+  .imageContainer {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .editIcon {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 24px; /* Ajusta según el tamaño del ícono */
+    height: 24px;
+    border-radius: 50%;
+    background-color: #c4a77d; /* Color dorado */
+    padding: 5px; /* Espaciado dentro del círculo */
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .editIcon:hover {
+    background: #B78628;
+  }
+  
+  .profileTitle {
+    color: #FBFBFB;
+    font-family: 'Poppins', sans-serif;
+    font-size: 25px;
+    font-style: normal;
+    line-height: normal;
+  }
+  
+  .conteinerTitlePr {
+    position: absolute;
+    left: 208px;
+    display: flex;
+    align-items: center;
+    padding: 50px;
+    width: 125px;
+    gap: 12px;
+    height: 38px;
+  }
+  
+  .buttonCircle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #292C2D;;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+  }
+  
+  .buttonCircle:hover {
+    cursor: pointer;
+    background: #585f61;
+  }
+  
+  .arrowIcon {
+    width: 17px;
+    height: 17px;
+  }
+  
+  .conteinerIconosPer{
+    position: absolute;
+    right: 0; /* Lo coloca en el extremo derecho */
+    top: 0; /* Ajusta esto según necesites (vertical) */
+    width: 98px;
+    height: 37px;
+    padding: 50px;
+    gap: 16px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .campanaImg{
+    width: 26px;
+    height: 32px;
+  }
+  .lineImg{
+    width: auto;
+    height: 22px;
+  }
+  
+  .perfilPhoto{
+    width: 37px;
+    height: 37px;
+  }
+  
+  /* Contenedor de perfil */
+  .profileContent {
+    gap: 20px;
+    margin-top: 94px;
+    display: grid;
+    grid-template-columns: auto 1fr; /* Dos columnas: la primera para opciones, la segunda para info */
+    max-width: 1390px; /* Ancho máximo del contenedor (ajusta según necesites) */
+    width: 90%; /* Ocupa 90% del ancho disponible */
+    margin-right: auto; /* Centrado horizontal mágico */
+    padding: 40px;
+  }
+
+  .activeOption2:hover, .activeOption3:hover {
+    background: #3a3f42;
+  }
+  
+  .profileOptions {
+    border-radius: 10px;
+    background: #292C2D;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra los botones verticalmente dentro del contenedor */
+    align-items: center; /* Centra los botones horizontalmente dentro del contenedor */
+    gap: 10px;
+    width: 319px;
+    height: 236px;
+    /* padding: 20px; Espacio interno para mejor visualización */
+  }
+  
+  .profileOptions button {
+    width: 279px;
+    height: 52px;
+    border-radius: 8px;
+    border: 1px solid #292C2D;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* Centra el contenido verticalmente dentro del botón */
+    padding-left: 15px; /* Espacio desde la izquierda para el contenido */
+    gap: 10px; /* Espacio entre icono y texto */
+  }
+  
+  .activeOption {
+    border-radius: 8px;
+    background: #C2A67D;
+  }
+  
+  .activeOption2 {
+    border-radius: 8px;
+    background: #292C2D;
+  }
+  
+  .activeOption3 {
+    border-radius: 8px;
+    background: #292C2D;
+  }
+  
+  .icon {
+    height: 20px;
+    width: 20px;
+  }
+  /* Información personal (derecha) */
+  .personalInfo {
+    padding: 40px;
+    border-radius: 10px;
+    width: 744px;
+    height: 824px;
+    background: #292C2D;
+  }
+  
+  /* Formulario */
+  .profileForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Ahora está correcto */
+    width: 100%;
+    max-width: 745px; /* Limita el ancho */
+  }
+  
+  .profileForm input {
+    width: 694px;
+    height: 65px;
+    border-radius: 10px;
+    background: #3D4142;
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+
+ .Names{
+    display: flex;
+    gap: 21px;
+    width: auto;
+    height: 65px; 
+    margin-bottom: 32px;
+ }
+
+  .Names input{
+    width: 342px;
+    height: 63px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-top: 10px;
+    flex-shrink: 0;
+  }
+  
+  
+  .passwordContainer {
+    display: flex;
+    gap: 21px;
+    width: auto;
+    height: 65px; 
+  }
+  
+  .passwordContainer input {
+    width: 342px;
+    height: 63px;
+    padding-right: 10px;
+    padding-left: 10px;
+    flex-shrink: 0;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+    gap: 10px;
+    width: 744px;
+    height: 65px;
+  }
+  
+  .addButton {
+    display: flex;
+    width: 362px;
+    height: 50px;
+    padding: 20px 50px; 
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: none;
+    background: #B78628;
+  }
+
+  .addButton:hover {
+    background: #996d1b;
+  }

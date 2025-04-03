@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './profile.module.css';
+import styles from './profileadd.module.css';
 import dashboardIcon from '../../assets/dashboard-icon.png';
 import bookIcon from '../../assets/book-icon.png';
 import staffIcon from '../../assets/staff-icon.png';
@@ -15,6 +15,7 @@ import perfilIcon from '../../assets/tabler_user-filled.svg';
 import accessIcon from '../../assets/lets-icons_setting-fill.svg';
 import logoutIcon2 from '../../assets/majesticons_logout.svg';
 import lapizIcon from '../../assets/lapiz.svg'
+import Img from '../../assets/img.png';
 
 import { Link } from 'react-router-dom';
 
@@ -113,13 +114,14 @@ const Profile: React.FC = () => {
                     <div className={styles.profileOptions}>
 
                     <Link to="/profile" style={{textDecoration:'none'}}>
-                    <button className={styles.activeOption}>
+                    <button className={styles.activeOption2}>
                         <img src={perfilIcon} alt="Profile" className={styles.icon} /> My Profile
                     </button>
                     </Link>
-                
+                 
+
                     <Link to="/profileadd" style={{textDecoration:'none'}}>
-                    <button className={styles.activeOption2}>
+                    <button className={styles.activeOption}>
                         <img src={accessIcon} alt="Access" className={styles.icon} /> Manage Access
                     </button>
                     </Link>
@@ -135,28 +137,33 @@ const Profile: React.FC = () => {
 
                     {/* Información personal (derecha) */}
                     <div className={styles.personalInfo}>
-                        <h2 style={{width: '264px', height: '38px'}}>Personal Information</h2>
+                        <h2 style={{width: '353px', height: '38px'}}>Admin Personal Information</h2>
                         <div className={styles.profileHeader}>
                         <div className={styles.imageContainer}>
-                            <img src={perfil2} alt="User" className={styles.profilePicture} />
+                            <img src={Img} alt="User" className={styles.profilePicture} />
                             <img src={lapizIcon} alt="Edit" className={styles.editIcon} />
                         </div>
-                        <div>
-                            <h3>John Doe</h3>
-                            <p>Manager</p>
-                        </div>
+                      
                     </div>
 
 
                         <form className={styles.profileForm}>
-                            <label>First Name</label>
-                            <input type="text" value="John Doe" />
+                            <div className={styles.Names}>
+                            <div>
+                                <label>First Name</label>
+                                <input type="firstname" />
+                            </div>
+                            <div>
+                                <label>UserName</label>
+                                <input type="usarname" />
+                            </div>
+                            </div>
 
                             <label>Email</label>
-                            <input type="email" value="johndoe123@gmail.com" />
+                            <input type="email"  />
 
                             <label>Address</label>
-                            <input type="text" value="123 Street USA, Chicago" />
+                            <input type="text"  />
 
                             <div className={styles.passwordContainer}>
                                 <div>
@@ -170,8 +177,7 @@ const Profile: React.FC = () => {
                             </div>
 
                             <div className={styles.buttonGroup}>
-                                <button className={styles.discardButton}>Discard Changes</button>
-                                <button className={styles.saveButton}>Save Changes</button>
+                                <button className={styles.addButton}>Add</button>
                             </div>
                         </form>
                     </div>

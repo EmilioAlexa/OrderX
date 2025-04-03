@@ -26,6 +26,8 @@ app.use(require("./routes/printers"));
 app.use(require("./routes/tickets"));
 app.use(require("./routes/tokens"));
 app.use("/auth", require("./routes/auth"));  // 📌 Esto asegura que la ruta sea /auth/login
+app.use(require("./routes/users"));
+
 
 
 const PORT = process.env.PORT || 3000;

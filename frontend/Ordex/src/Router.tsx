@@ -4,6 +4,7 @@ import Dashboard from "./components/dashboard"; // Verifica que la mayúscula co
 import Login from "./components/Login"; 
 import Staff from "./components/staff";
 import Profile from "./components/profile/profile"; 
+import ProfileAdd from "./components/profile/profile.add"; 
 
 const AppRouter: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const AppRouter: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/staff" element={<Staff />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/profileadd" element={<ProfileAdd />} />
       </Routes>
     </BrowserRouter>
   );
