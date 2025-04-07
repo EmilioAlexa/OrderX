@@ -8,6 +8,7 @@ import ProfileAdd from "./components/profile/profile.add";
 import Menu from "./components/menu/profile"; 
 import Inventory from "./components/inventory/profile"; 
 import Order from "./components/order/profile"; 
+import ChartTestComponent from './components/ChartTestComponent/ChartTestComponent';
 
 const AppRouter: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const AppRouter: React.FC = () => {
         <Route path="/menu" element={<Menu />} />
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/ChartTest" element={<ChartTestComponent />} />
       </Routes>
     </BrowserRouter>
   );

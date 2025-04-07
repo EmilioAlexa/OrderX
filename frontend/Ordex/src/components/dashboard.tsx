@@ -1,7 +1,10 @@
 
-import '../assets/style/dashboard.css'; // Asegúrate de que el CSS esté correctamente ubicado
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import OverviewChart from '../components/OverviewChart/OverviewChart';
+import '../assets/style/dashboard.css';
 
-// Importación de imágenes si están en src/assets/
+// Importación de imágenes
 import arrowIcon from '../assets/arrow-icon.png';
 import notificationIcon from '../assets/notification-ico.png';
 import profileIcon from '../assets/profile-icon.png';
@@ -17,9 +20,55 @@ import inventoryIcon from '../assets/inventory-icon.png';
 import orderIcon from '../assets/order-icon.png';
 import chickenDish from '../assets/chicken.png';
 
-import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
+
+  const [selectedRange, setSelectedRange] = useState<'monthly' | 'weekly' | 'daily'>('monthly');
+  const monthlyData = [
+    { time: '2025-01-01', sales: 1000, revenue: 3000 },
+    { time: '2025-02-01', sales: 2000, revenue: 3200 },
+    { time: '2025-03-01', sales: 1500, revenue: 3100 },
+    { time: '2025-04-01', sales: 3000, revenue: 2900 },
+    { time: '2025-05-01', sales: 2500, revenue: 3300 },
+    { time: '2025-06-01', sales: 3500, revenue: 3400 },
+    { time: '2025-07-01', sales: 4000, revenue: 3600 },
+    { time: '2025-08-01', sales: 4500, revenue: 3500 },
+    { time: '2025-09-01', sales: 4700, revenue: 3200 },
+    { time: '2025-10-01', sales: 4200, revenue: 3100 },
+    { time: '2025-11-01', sales: 4800, revenue: 2600 },
+    { time: '2025-12-01', sales: 5000, revenue: 3000 },
+  ];
+
+  const weeklyData = [
+    { time: 'Week 1', sales: 800, revenue: 2000 },
+    { time: 'Week 2', sales: 1500, revenue: 2500 },
+    { time: 'Week 3', sales: 1000, revenue: 2200 },
+    { time: 'Week 4', sales: 1800, revenue: 2700 },
+  ];
+
+  const dailyData = [
+    { time: 'Mon', sales: 300, revenue: 700 },
+    { time: 'Tue', sales: 500, revenue: 1200 },
+    { time: 'Wed', sales: 400, revenue: 1000 },
+    { time: 'Thu', sales: 600, revenue: 1300 },
+    { time: 'Fri', sales: 550, revenue: 1250 },
+    { time: 'Sat', sales: 700, revenue: 1500 },
+    { time: 'Sun', sales: 650, revenue: 1400 },
+  ];
+
+  const getChartData = () => {
+    switch (selectedRange) {
+      case 'daily':
+        return dailyData;
+      case 'weekly':
+        return weeklyData;
+      default:
+        return monthlyData;
+    }
+  };
+
+
+
   return (
     <div className="container">
       <div className="sidebar"></div>
@@ -89,45 +138,41 @@ const Dashboard = () => {
       </div>
 
       {/* Sección Overview */}
-      <div className="overview">
-        <div className="overview-background"></div>
-        <div className="overview-title">Overview</div>
-        <div className="export-button" style={{ cursor: 'pointer' }}>
-          <div className="export-text">
-            <img src={exportIcon} alt="" style={{ marginRight: '6px' }} />
-            Export
+       <div className="overview">
+      <div className="overview-title">Overview</div>
+
+      {/* Botones de cambio */}
+      <div className="time-selector">
+        {['monthly', 'daily', 'weekly'].map((range) => (
+          <div
+            key={range}
+            className={`time-option ${range} ${selectedRange === range ? 'active' : ''}`}
+            onClick={() => setSelectedRange(range as 'monthly' | 'daily' | 'weekly')}
+          >
+            {range.charAt(0).toUpperCase() + range.slice(1)}
           </div>
-        </div>
-        <div className="time-selector">
-          <div className="time-option monthly">Monthly</div>
-          <div className="time-option">Daily</div>
-          <div className="time-option">Weekly</div>
-        </div>
-        <div className="months">
-          {['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'].map((month, i) => (
-            <div key={i} className="month">{month}</div>
-          ))}
-        </div>
-        <div className="y-axis">
-          {['5k', '4k', '3k', '2k', '1k', '0'].map((value, i) => (
-            <div key={i} className="y-value">{value}</div>
-          ))}
-        </div>
-        <div className="grid-lines">
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="line"></div>
-          ))}
-        </div>
-        <div className="legend">
-          <div className="legend-item sales"></div>
-          <div className="legend-text sales-text">Sales</div>
-          <div className="legend-item revenue"></div>
-          <div className="legend-text revenue-text">Revenue</div>
-        </div>
-        <div className="chart-area"></div>
-        <div className="chart-highlight"></div>
-        <div className="chart-marker"></div>
+        ))}
       </div>
+
+      {/* Gráfico */}
+      <div className="chart-area" style={{ height: '300px', marginTop: '20px' }}>
+        <OverviewChart 
+          data={getChartData()} 
+          color="#C2A67D" 
+          height={300}
+          range={selectedRange} // <-- Nuevo prop
+        />
+      </div>
+
+      {/* Leyenda */}
+      <div className="legend">
+        <div className="legend-item sales" style={{ backgroundColor: '#C2A67D' }}></div>
+        <div className="legend-text sales-text">Sales</div>
+        <div className="legend-item revenue" style={{ backgroundColor: '#EDEDED' }}></div>
+        <div className="legend-text">Revenue</div>
+      </div>
+    </div>
+
 
       {/* Sección Popular Dishes */}
       <div className="popular-dishes">
