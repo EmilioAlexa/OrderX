@@ -8,7 +8,8 @@ app.use(express.urlencoded({ extended: true }));
 const cors = require("cors");
 
 app.use(cors({ 
-    origin: "http://localhost:4000", // Permite solo tu frontend
+    origin: 'https://illustrious-gnome-0f2a78.netlify.app/', // o tu dominio personalizado
+    credentials: true, // si usas cookies o autenticación
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type,Authorization"
 }));
