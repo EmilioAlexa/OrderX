@@ -7,12 +7,15 @@ app.use(express.urlencoded({ extended: true }));
 
 const cors = require("cors");
 
-app.use(cors({ 
-    origin: '*', // o tu dominio personalizado
-    credentials: true, // si usas cookies o autenticación
-    methods: "GET,POST,PUT,DELETE",
-    allowedHeaders: "Content-Type,Authorization"
-}));
+app.use(cors({
+    origin: 'https://illustrious-gnome-0f2a78.netlify.app',
+    credentials: true, // solo si usas cookies/autenticación
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type,Authorization'
+  }));
+  
+  // Importante: permitir las solicitudes preflight (OPTIONS)
+  app.options('*', cors());
 
 // Cargar rutas
 app.use(require("./routes/auth"));  // Ruta de autenticación
