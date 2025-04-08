@@ -12,6 +12,10 @@ import staffIcon from '../assets/staff-icon.png';
 import inventoryIcon from '../assets/inventory-icon.png';
 import orderIcon from '../assets/order-icon.png';
 import Dots from '../assets/dots.png';
+import campana from '../assets/Captura de pantalla 2025-03-31 225150.png';
+import line from '../assets/Vector 139.svg';
+import perfil2 from '../assets/Ellipse 2.png';
+import styles from '../components/profile/profile.module.css';
 
 interface StaffMember {
   id_employee: number;
@@ -23,6 +27,7 @@ interface StaffMember {
   role_id: number;
   estatus: boolean;
 }
+
 
 const StaffManagement: React.FC = () => {
   const [staffList, setStaffList] = useState<StaffMember[]>([]);
@@ -165,6 +170,17 @@ const StaffManagement: React.FC = () => {
     }
   };
 
+
+  const [showModal, setShowModal] = useState(false);
+  
+const handleCampanaClick = () => {
+  setShowModal(true);
+};
+
+const closeModal = () => {
+  setShowModal(false);
+};
+
   const handleDotsClick = (staffId: string, e: React.MouseEvent, index: number) => {
     e.stopPropagation();
     const dotsElement = dotsRefs.current[index];
@@ -239,6 +255,7 @@ const StaffManagement: React.FC = () => {
   if (loading) return <div className="loading">Cargando empleados...</div>;
   if (error) return <div className="error">{error}</div>;
 
+
   return (
     <div className="container2" onClick={() => showActionsModal.show && handleCloseActionsModal()}>
       <div className="sidebar2"></div>
@@ -302,13 +319,26 @@ const StaffManagement: React.FC = () => {
         <img src={arrowIcon} alt=""/>
       </div>
       
-      <div className="icon-3">
-        <img src={notificationIcon} alt="" style={{ height: '40px'}} />
+      <div className={styles.conteinerIconosPer}>
+        <div className={styles.campanaIcon} onClick={handleCampanaClick} style={{ cursor: 'pointer' }}>
+          <img src={campana} alt="Notification" className={styles.campanaImg} />
+        </div>
+        <div>
+          <img src={line} alt="Divider" className={styles.lineImg} />
+        </div>
+        <Link to="/profile" style={{ textDecoration: 'none' }}>
+          <div className={styles.perfilIcon}>
+            <img src={perfil2} alt="Profile" className={styles.perfilPhoto} />
+          </div>
+        </Link>
       </div>
 
-      <Link to="/profile" style={{textDecoration:'none'}}>
-        <img className="profile-pic" src={profileIcon} alt="Profile" />
-      </Link>
+      {showModal && (
+      <div className={styles.modalTopLeft}>
+          <p>No movements or updates</p>
+          <button onClick={closeModal}>Exit</button>
+      </div>
+      )}
       
       <div className="staff-title">Staff ({staffList.length})</div>
       

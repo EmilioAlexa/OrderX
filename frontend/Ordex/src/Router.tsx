@@ -7,7 +7,7 @@ import Profile from "./components/profile/profile";
 import ProfileAdd from "./components/profile/profile.add"; 
 import Menu from "./components/menu/profile"; 
 import Inventory from "./components/inventory/profile"; 
-import Order from "./components/order/profile"; 
+import Order from "./components/order/Order"; 
 import ChartTestComponent from './components/ChartTestComponent/ChartTestComponent';
 
 const AppRouter: React.FC = () => {

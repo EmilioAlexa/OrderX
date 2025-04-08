@@ -243,6 +243,8 @@
 .perfilPhoto{
   width: 37px;
   height: 37px;
+  border: 1.5px solid #C2A67D;
+  border-radius: 37.146px;
 }
 
 /* Contenedor de perfil */
@@ -386,3 +388,53 @@
   border: none;
   background: #B78628;
 }
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* fondo oscuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalTopLeft  p {
+  margin-bottom: 16px;
+  color: var(--sauxiliar, #ecac4c);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.modalContent button {
+  padding: 8px 16px;
+  background-color: #C2A67D;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modalTopLeft button:hover {
+  background-color: #a98b63;
+  border-color: #a98b63;
+}
+
+.modalTopLeft {
+  position: fixed;
+  top: 20px;
+  left: 1050px;
+  background-color: #333333;
+  padding: 16px 24px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+}
+

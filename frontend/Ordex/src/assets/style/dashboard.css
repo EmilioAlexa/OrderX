@@ -398,9 +398,19 @@ body {
 
 /* Sección Popular Dishes */
 .popular-dishes {
-    width: 768px;
+    width: 575px;
     height: 466px;
     left: 200px;
+    top: 318px;
+    position: absolute;
+    background: #292C2D;
+    border-radius: 10px;
+}
+
+.popular-dishes-2 {
+    width: 575px;
+    height: 466px;
+    left: 820px;
     top: 318px;
     position: absolute;
     background: #292C2D;
@@ -417,7 +427,7 @@ body {
 }
 
 .see-all {
-    left: 674.53px;
+    left: 480px;
     top: 32px;
     position: absolute;
     color: #C2A67D;
@@ -426,29 +436,35 @@ body {
     text-decoration: underline;
 }
 
-.scroll-bar {
-    width: 14px;
-    height: 466px;
-    left: 754px;
-    top: 0;
+.scroll-area {
     position: absolute;
+    top: 80px; /* Debajo del título */
+    left: 0;
+    right: 14px; /* deja espacio al scroll-bar */
+    bottom: 0;
+    overflow-y: auto;
+    padding-right: 15px;
+  }
+  
+  /* Estilo del scroll personalizado */
+  .scroll-area::-webkit-scrollbar {
+    width: 14px;
+  }
+  
+  .scroll-area::-webkit-scrollbar-track {
     background: #484d4e;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-}
-
-.scroll-thumb {
-    width: 9.66px;
-    height: 106.98px;
-    left: 756px;
-    top: 12.80px;
-    position: absolute;
+  }
+  
+  .scroll-area::-webkit-scrollbar-thumb {
     background: #292C2D;
-    border-radius: 37.15px;
-}
+    border-radius: 37px;
+  }
+  
 
 .dish {
-    width: 708px;
+    width: 505px;
     height: 77px;
     position: absolute;
     background: #3D4142;
@@ -491,7 +507,7 @@ body {
 }
 
 .dish-price {
-    left: 646px;
+    left: 440px;
     top: 44px;
     position: absolute;
     font-size: 14px;
@@ -501,7 +517,7 @@ body {
 }
 
 .dish-status {
-    left: 631px;
+    left: 430px;
     top: 12px;
     position: absolute;
     font-size: 16px;
@@ -602,3 +618,45 @@ body {
     font-size: 16px;
     font-weight: 400;
 }
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* fondo oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modalTopLeft {
+    background-color: white;
+    padding: 24px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+  }
+  
+  .modalContent p {
+    margin-bottom: 16px;
+    font-size: 18px;
+  }
+  
+  .modalContent button {
+    padding: 8px 16px;
+    background-color: #C2A67D;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .modalContent button:hover {
+    background-color: #a98b63;
+  }
+  

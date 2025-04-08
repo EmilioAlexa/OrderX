@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './profile.module.css';
+import styles from './Order.module.css';
 import dashboardIcon from '../../assets/dashboard-icon.png';
 import bookIcon from '../../assets/book-icon.png';
 import staffIcon from '../../assets/staff-icon.png';
@@ -15,7 +15,7 @@ import perfilIcon from '../../assets/tabler_user-filled.svg';
 import accessIcon from '../../assets/lets-icons_setting-fill.svg';
 import logoutIcon2 from '../../assets/majesticons_logout.svg';
 import lapizIcon from '../../assets/lapiz.svg'
-import menu from '../../assets/order.png'
+import menu from '../../assets/Captura de pantalla 2025-04-07 192821.png';
 
 import { Link } from 'react-router-dom';
 
@@ -85,7 +85,7 @@ const Profile: React.FC = () => {
                 
             </div>
             
-           <img src={menu} alt="" style={{ marginTop: '40px', marginLeft: '40px' }}/>
+           <img src={menu} alt="" style={{ marginTop: '5x', marginLeft: '20px' }}/>
         </div>
     );
 };

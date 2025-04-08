@@ -19,6 +19,10 @@ import staffIcon from '../assets/staff-icon.png';
 import inventoryIcon from '../assets/inventory-icon.png';
 import orderIcon from '../assets/order-icon.png';
 import chickenDish from '../assets/chicken.png';
+import styles from '../components/profile/profile.module.css';
+import campana from '../assets/Captura de pantalla 2025-03-31 225150.png';
+import line from '../assets/Vector 139.svg';
+import perfil2 from '../assets/Ellipse 2.png';
 
 
 const Dashboard = () => {
@@ -67,28 +71,49 @@ const Dashboard = () => {
     }
   };
 
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCampanaClick = () => {
+    setShowModal(true);
+  };
+  
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
 
 
   return (
     <div className="container">
-      <div className="sidebar"></div>
+      <div className="sidebar"></div> 
       <div className="dashboard-text">Dashboard</div>
       <div className="icon-1">
         <img src={arrowIcon} alt="" style={{ marginLeft: '6px', marginTop: '6px' }} />
       </div>
 
-      <div className="icon-3">
-        <img src={notificationIcon} alt="" style={{ height: '40px' }} />
+      <div className={styles.conteinerIconosPer}>
+        <div className={styles.campanaIcon} onClick={handleCampanaClick} style={{ cursor: 'pointer' }}>
+          <img src={campana} alt="Notification" className={styles.campanaImg} />
+        </div>
+        <div>
+          <img src={line} alt="Divider" className={styles.lineImg} />
+        </div>
+        <Link to="/profile" style={{ textDecoration: 'none' }}>
+          <div className={styles.perfilIcon}>
+            <img src={perfil2} alt="Profile" className={styles.perfilPhoto} />
+          </div>
+        </Link>
       </div>
 
-      <Link to="/profile" style={{textDecoration:'none'}}>
-      <img
-        className="profile-image"
-        src={profileIcon}
-        alt="Imagen de perfil"
-        style={{ cursor: 'pointer', marginTop: '12px' }}
-      />
-      </Link>
+      {showModal && (
+      <div className={styles.modalTopLeft}>
+          <p>No movements or updates</p>
+          <button onClick={closeModal}>Exit</button>
+      </div>
+      )}
+
+
+
 
       {/* Tarjeta 1: Daily Sales */}
       <div className="card card-1">
@@ -180,30 +205,99 @@ const Dashboard = () => {
         <div className="dishes-title">Popular Dishes</div>
         <div className="see-all" style={{ cursor: 'pointer' }}>See All</div>
         <div className="scroll-bar"></div>
-        <div className="scroll-thumb"></div>
-        <div className="dish" style={{ marginTop: '80px', marginLeft: '30px' }}>
-          <img src={chickenDish} alt="Chicken Parmesan" />
-          <div className="dish-name">Chicken Parmesan</div>
-          <div className="dish-details">Serving : 01 person</div>
-          <div className="dish-price">$55.00</div>
-          <div className="dish-status in-stock">In Stock</div>
-        </div>
+        <div className="scroll-area">
+            <div className="dish" style={{ marginTop: '20px', marginLeft: '30px' }}>
+              <img src={chickenDish} alt="Chicken Parmesan" />
+              <div className="dish-name">Chicken Parmesan</div>
+              <div className="dish-details">Serving : 01 person</div>
+              <div className="dish-price">$55.00</div>
+              <div className="dish-status in-stock">In Stock</div>
+            </div>
 
-        <div className="dish" style={{ marginTop: '180px', marginLeft: '30px' }}>
-          <img src={chickenDish} alt="Chicken Parmesan" />
-          <div className="dish-name">Chicken Parmesan</div>
-          <div className="dish-details">Serving : 01 person</div>
-          <div className="dish-price">$55.00</div>
-          <div className="dish-status in-stock">In Stock</div>
-        </div>
+            <div className="dish" style={{ marginTop: '110px', marginLeft: '30px' }}>
+              <img src={chickenDish} alt="Chicken Parmesan" />
+              <div className="dish-name">Chicken Parmesan</div>
+              <div className="dish-details">Serving : 01 person</div>
+              <div className="dish-price">$55.00</div>
+              <div className="dish-status in-stock">In Stock</div>
+            </div>
 
-        <div className="dish" style={{ marginTop: '280px', marginLeft: '30px' }}>
-          <img src={chickenDish} alt="Chicken Parmesan" />
-          <div className="dish-name">Chicken Parmesan</div>
-          <div className="dish-details">Serving : 01 person</div>
-          <div className="dish-price">$55.00</div>
-          <div className="dish-status in-stock">In Stock</div>
-        </div>
+            <div className="dish" style={{ marginTop: '200px', marginLeft: '30px' }}>
+              <img src={chickenDish} alt="Chicken Parmesan" />
+              <div className="dish-name">Chicken Parmesan</div>
+              <div className="dish-details">Serving : 01 person</div>
+              <div className="dish-price">$55.00</div>
+              <div className="dish-status in-stock" style={{color:'#F60000', left:'400px'}}>Out of stock</div>
+            </div>
+
+            <div className="dish" style={{ marginTop: '290px', marginLeft: '30px' }}>
+              <img src={chickenDish} alt="Chicken Parmesan" />
+              <div className="dish-name">Chicken Parmesan</div>
+              <div className="dish-details">Serving : 01 person</div>
+              <div className="dish-price">$55.00</div>
+              <div className="dish-status in-stock">In Stock</div>
+            </div>
+
+            <div className="dish" style={{ marginTop: '380px', marginLeft: '30px' }}>
+              <img src={chickenDish} alt="Chicken Parmesan" />
+              <div className="dish-name">Chicken Parmesan</div>
+              <div className="dish-details">Serving : 01 person</div>
+              <div className="dish-price">$55.00</div>
+              <div className="dish-status in-stock">In Stock</div>
+            </div>
+            
+          </div> 
+        
+        {/* Repite la estructura para los otros platos */}
+      </div>
+
+      <div className="popular-dishes-2">
+        <div className="dishes-background"></div>
+        <div className="dishes-title">Popular Dishes</div>
+        <div className="see-all" style={{ cursor: 'pointer' }}>See All</div>
+        <div className="scroll-bar"></div>
+         <div className="scroll-area">
+            <div className="dish" style={{ marginTop: '20px', marginLeft: '30px' }}>
+              <img src={chickenDish} alt="Chicken Parmesan" />
+              <div className="dish-name">Chicken Parmesan</div>
+              <div className="dish-details">Serving : 01 person</div>
+              <div className="dish-price">$55.00</div>
+              <div className="dish-status in-stock">In Stock</div>
+            </div>
+
+            <div className="dish" style={{ marginTop: '110px', marginLeft: '30px' }}>
+              <img src={chickenDish} alt="Chicken Parmesan" />
+              <div className="dish-name">Chicken Parmesan</div>
+              <div className="dish-details">Serving : 01 person</div>
+              <div className="dish-price">$55.00</div>
+              <div className="dish-status in-stock">In Stock</div>
+            </div>
+
+            <div className="dish" style={{ marginTop: '200px', marginLeft: '30px' }}>
+              <img src={chickenDish} alt="Chicken Parmesan" />
+              <div className="dish-name">Chicken Parmesan</div>
+              <div className="dish-details">Serving : 01 person</div>
+              <div className="dish-price">$55.00</div>
+              <div className="dish-status in-stock" style={{color:'#F60000', left:'400px'}}>Out of stock</div>
+            </div>
+
+            <div className="dish" style={{ marginTop: '290px', marginLeft: '30px' }}>
+              <img src={chickenDish} alt="Chicken Parmesan" />
+              <div className="dish-name">Chicken Parmesan</div>
+              <div className="dish-details">Serving : 01 person</div>
+              <div className="dish-price">$55.00</div>
+              <div className="dish-status in-stock">In Stock</div>
+            </div>
+
+            <div className="dish" style={{ marginTop: '380px', marginLeft: '30px' }}>
+              <img src={chickenDish} alt="Chicken Parmesan" />
+              <div className="dish-name">Chicken Parmesan</div>
+              <div className="dish-details">Serving : 01 person</div>
+              <div className="dish-price">$55.00</div>
+              <div className="dish-status in-stock">In Stock</div>
+            </div>
+
+          </div> 
         
         {/* Repite la estructura para los otros platos */}
       </div>

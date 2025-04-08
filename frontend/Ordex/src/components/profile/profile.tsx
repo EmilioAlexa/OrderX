@@ -42,6 +42,17 @@ const Profile: React.FC = () => {
         navigate("/login"); // Redirigir a la página de login
     };
 
+     const [showModal, setShowModal] = useState(false);
+    
+      const handleCampanaClick = () => {
+        setShowModal(true);
+      };
+      
+      const closeModal = () => {
+        setShowModal(false);
+      };
+    
+
     return (
         <div className={styles.profileContainer}>
             <div className={styles.sidebar}>
@@ -116,18 +127,26 @@ const Profile: React.FC = () => {
 
             {/* Iconos */}
             <div className={styles.conteinerIconosPer}>
-                <div className={styles.campanaIcon}>
-                    <img src={campana} alt="Notification" className={styles.campanaImg} />
+                <div className={styles.campanaIcon} onClick={handleCampanaClick} style={{ cursor: 'pointer' }}>
+                <img src={campana} alt="Notification" className={styles.campanaImg} />
                 </div>
                 <div>
-                    <img src={line} alt="Divider" className={styles.lineImg} />
+                <img src={line} alt="Divider" className={styles.lineImg} />
                 </div>
                 <Link to="/profile" style={{ textDecoration: 'none' }}>
-                    <div className={styles.perfilIcon}>
-                        <img src={perfil2} alt="Profile" className={styles.perfilPhoto} />
-                    </div>
+                <div className={styles.perfilIcon}>
+                    <img src={perfil2} alt="Profile" className={styles.perfilPhoto} />
+                </div>
                 </Link>
             </div>
+
+            {showModal && (
+            <div className={styles.modalTopLeft}>
+                <p>No movements or updates</p>
+                <button  onClick={closeModal}>Exit</button>
+            </div>
+            )}
+
 
             {/* Contenido del perfil (dos columnas) */}
             <div className={styles.profileContent}>
